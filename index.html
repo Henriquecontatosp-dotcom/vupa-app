@@ -5,73 +5,83 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#5126D8">
-<title>VUPA — Sua corrida, segura.</title>
+<title>VUPA | Sua corrida, segura.</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#fff;color:#21183c}
-:root{--purple:#5126D8;--orange:#FF713D}
-header{padding:25px 7%;display:flex;align-items:center}
-.brand{display:flex;align-items:center;gap:12px}
-.brand svg{width:52px;height:52px}
-.brand-name{font-size:37px;font-weight:900;letter-spacing:-2px;color:var(--purple)}
-.brand-name span{color:var(--orange)}
-main{min-height:75vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:45px;padding:45px 8%}
-h1{font-size:clamp(42px,6vw,68px);line-height:1.05;letter-spacing:-3px;color:var(--purple)}
-h1 span{color:var(--orange)}
-.slogan{font-size:23px;font-weight:700;margin:24px 0;color:#30234d}
-.description{font-size:17px;line-height:1.7;color:#777083;max-width:440px}
-.actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
-button{padding:17px 25px;border:0;border-radius:12px;font-size:15px;font-weight:bold;cursor:pointer}
-.passenger{background:var(--purple);color:white}
-.driver{background:#fff;color:var(--purple);border:2px solid var(--purple)}
-.visual{background:linear-gradient(145deg,#5126D8,#35118f);border-radius:30px;padding:40px;color:white;min-height:390px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative}
-.visual:after{content:"";position:absolute;width:210px;height:210px;border-radius:50%;background:var(--orange);right:-80px;top:-90px}
-.visual h2{font-size:32px;position:relative;z-index:1}
-.visual h2 span{color:#FFAD86}
-.car{font-size:100px;text-align:center;padding:30px 0}
-.visual p{line-height:1.6;color:#eee8ff;position:relative;z-index:1}
-footer{text-align:center;color:#898296;padding:25px;font-size:13px}
+:root{--roxo:#5126D8;--laranja:#FF713D}
+body{font-family:Arial,sans-serif;background:#fff;color:#251A40}
+header{padding:28px 7%;display:flex;align-items:center}
+.logo{display:flex;align-items:center;gap:12px}
+.logo svg{width:58px;height:58px}
+.nome{font-size:40px;font-weight:900;letter-spacing:-2px;color:var(--roxo)}
+.nome span{color:var(--laranja)}
+main{max-width:1200px;margin:auto;padding:65px 7%;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px}
+.slogan{font-size:clamp(38px,5vw,62px);line-height:1.08;font-weight:800;letter-spacing:-2px;color:var(--roxo)}
+.slogan span{color:var(--laranja)}
+.descricao{font-size:17px;line-height:1.7;color:#777083;margin-top:25px;max-width:430px}
+.botoes{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+button{padding:17px 24px;border-radius:12px;font-size:15px;font-weight:bold;cursor:pointer}
+.passageiro{background:var(--roxo);color:white;border:0}
+.motorista{background:white;color:var(--roxo);border:2px solid var(--roxo)}
+.visual{background:linear-gradient(145deg,#5126D8,#321080);border-radius:32px;min-height:390px;padding:40px;color:white;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.visual:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:var(--laranja);right:-90px;top:-100px}
+.visual h2{font-size:34px;position:relative;z-index:1}
+.carro{font-size:100px;text-align:center}
+.visual p{font-size:16px;line-height:1.6;position:relative;z-index:1}
+footer{text-align:center;padding:25px;color:#898296;font-size:13px}
 @media(max-width:750px){
 main{grid-template-columns:1fr;padding:35px 7%;gap:35px}
-h1{font-size:49px}
-.actions{flex-direction:column}
+.botoes{flex-direction:column}
 button{width:100%}
 .visual{min-height:310px}
 }
 </style>
 </head>
 <body>
+
 <header>
-<div class="brand">
-<svg viewBox="0 0 100 100" role="img" aria-label="Símbolo VUPA">
-<path d="M17 18 L43 76 Q49 89 57 76 L83 18"
-fill="none" stroke="#5126D8" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M56 76 L83 18" fill="none" stroke="#FF713D" stroke-width="15" stroke-linecap="round"/>
-<circle cx="83" cy="18" r="8" fill="#FF713D"/>
+<div class="logo">
+<svg viewBox="0 0 100 100" aria-label="Símbolo VUPA">
+<path d="M12 17 L42 78 Q50 95 59 78 L88 17"
+fill="none" stroke="#5126D8" stroke-width="17"
+stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M52 80 L88 17"
+fill="none" stroke="#FF713D" stroke-width="17"
+stroke-linecap="round"/>
 </svg>
-<div class="brand-name">VUPA<span>.</span></div>
+<div class="nome">VUPA<span>.</span></div>
 </div>
 </header>
+
 <main>
 <section>
-<h1>Sua cidade.<br>Seu destino.<br><span>VUPA.</span></h1>
-<p class="slogan">Sua corrida, segura.</p>
-<p class="description">
-Mobilidade para conectar pessoas e destinos.
-Escolha seu caminho, solicite sua viagem e
-conte com uma nova experiência de transporte.
+<h1 class="slogan">
+Sua corrida,<br>
+<span>segura.</span>
+</h1>
+
+<p class="descricao">
+Mobilidade conectando passageiros e motoristas.
+Uma nova experiência para suas viagens de carro e moto.
 </p>
-<div class="actions">
-<button class="passenger" onclick="alert('Cadastro de passageiros em desenvolvimento.')">Sou passageiro</button>
-<button class="driver" onclick="alert('Cadastro de motoristas em desenvolvimento.')">Quero dirigir</button>
+
+<div class="botoes">
+<button class="passageiro" onclick="alert('Cadastro de passageiros em desenvolvimento.')">
+Sou passageiro
+</button>
+<button class="motorista" onclick="alert('Cadastro de motoristas em desenvolvimento.')">
+Quero dirigir
+</button>
 </div>
 </section>
+
 <section class="visual">
-<h2>Sua corrida,<br><span>segura.</span></h2>
-<div class="car">🚘</div>
-<p>Carros e motos. Passageiros e motoristas conectados pela VUPA.</p>
+<h2>Sua corrida,<br>segura.</h2>
+<div class="carro">🚘</div>
+<p>VUPA — Mobilidade para todos.</p>
 </section>
 </main>
-<footer>VUPA © 2026 — Sua corrida, segura.</footer>
+
+<footer>VUPA © 2026</footer>
 </body>
 </html>
