@@ -4,84 +4,350 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#5126D8">
 <title>VUPA | Sua corrida, segura.</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--roxo:#5126D8;--laranja:#FF713D}
-body{font-family:Arial,sans-serif;background:#fff;color:#251A40}
-header{padding:28px 7%;display:flex;align-items:center}
-.logo{display:flex;align-items:center;gap:12px}
-.logo svg{width:58px;height:58px}
-.nome{font-size:40px;font-weight:900;letter-spacing:-2px;color:var(--roxo)}
-.nome span{color:var(--laranja)}
-main{max-width:1200px;margin:auto;padding:65px 7%;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px}
-.slogan{font-size:clamp(38px,5vw,62px);line-height:1.08;font-weight:800;letter-spacing:-2px;color:var(--roxo)}
-.slogan span{color:var(--laranja)}
-.descricao{font-size:17px;line-height:1.7;color:#777083;margin-top:25px;max-width:430px}
-.botoes{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
-button{padding:17px 24px;border-radius:12px;font-size:15px;font-weight:bold;cursor:pointer}
-.passageiro{background:var(--roxo);color:white;border:0}
-.motorista{background:white;color:var(--roxo);border:2px solid var(--roxo)}
-.visual{background:linear-gradient(145deg,#5126D8,#321080);border-radius:32px;min-height:390px;padding:40px;color:white;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-.visual:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:var(--laranja);right:-90px;top:-100px}
-.visual h2{font-size:34px;position:relative;z-index:1}
-.carro{font-size:100px;text-align:center}
-.visual p{font-size:16px;line-height:1.6;position:relative;z-index:1}
-footer{text-align:center;padding:25px;color:#898296;font-size:13px}
-@media(max-width:750px){
-main{grid-template-columns:1fr;padding:35px 7%;gap:35px}
-.botoes{flex-direction:column}
-button{width:100%}
-.visual{min-height:310px}
+:root {
+  --purple:#6428c9;
+  --purple-dark:#35116f;
+  --orange:#ff8a24;
+  --background:#f7f5fb;
+  --text:#241d31;
+  --muted:#777183;
+}
+* {box-sizing:border-box}
+body {
+  margin:0;
+  font-family:Inter,Arial,sans-serif;
+  background:var(--background);
+  color:var(--text);
+}
+header {
+  height:76px;
+  padding:0 7%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:white;
+  border-bottom:1px solid #eeeaf4;
+}
+.brand {
+  font-size:30px;
+  font-weight:900;
+  letter-spacing:-2px;
+  color:var(--purple);
+}
+.brand span {color:var(--orange)}
+.header-text {
+  color:var(--muted);
+  font-size:13px;
+}
+main {
+  min-height:calc(100vh - 76px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:42px 18px;
+}
+.container {
+  width:100%;
+  max-width:560px;
+  background:white;
+  padding:38px;
+  border-radius:22px;
+  box-shadow:0 15px 55px rgba(48,24,83,.08);
+}
+.tag {
+  display:inline-block;
+  background:#f2eaff;
+  color:var(--purple);
+  padding:8px 13px;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:700;
+}
+h1 {
+  font-size:29px;
+  margin:17px 0 8px;
+  letter-spacing:-1px;
+}
+.subtitle {
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
+  margin:0 0 26px;
+}
+.form-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:17px 14px;
+}
+.field {min-width:0}
+.full {grid-column:1/-1}
+label {
+  display:block;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+input {
+  width:100%;
+  height:48px;
+  border:1px solid #e5e0eb;
+  border-radius:10px;
+  padding:0 13px;
+  font-size:14px;
+  outline:none;
+  background:#fff;
+  color:var(--text);
+}
+input:focus {
+  border-color:var(--purple);
+  box-shadow:0 0 0 3px #6428c918;
+}
+input::placeholder {color:#aaa4b3}
+.hint {
+  color:#8a8492;
+  font-size:11px;
+  margin-top:6px;
+}
+.checkline {
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  margin:22px 0;
+  font-size:12px;
+  color:#625b6d;
+  line-height:1.5;
+}
+.checkline input {
+  width:16px;
+  height:16px;
+  margin:1px 0 0;
+  accent-color:var(--purple);
+}
+button {
+  width:100%;
+  border:0;
+  height:52px;
+  border-radius:11px;
+  background:linear-gradient(100deg,var(--purple),#8244df);
+  color:white;
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.2s;
+}
+button:hover {filter:brightness(1.08)}
+button:disabled {opacity:.6;cursor:not-allowed}
+.message {
+  display:none;
+  padding:13px;
+  margin-top:16px;
+  border-radius:10px;
+  font-size:13px;
+  line-height:1.5;
+}
+.error {display:block;background:#fff0f0;color:#a52323}
+.success {display:block;background:#f0fff5;color:#176b39}
+.footer {
+  text-align:center;
+  color:#9992a2;
+  font-size:11px;
+  margin-top:24px;
+}
+@media(max-width:520px) {
+  header {padding:0 20px}
+  .header-text {font-size:11px}
+  .container {padding:27px 20px}
+  h1 {font-size:25px}
+  .form-grid {grid-template-columns:1fr}
+  .full {grid-column:auto}
 }
 </style>
 </head>
 <body>
 
 <header>
-<div class="logo">
-<svg viewBox="0 0 100 100" aria-label="Símbolo VUPA">
-<path d="M12 17 L42 78 Q50 95 59 78 L88 17"
-fill="none" stroke="#5126D8" stroke-width="17"
-stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M52 80 L88 17"
-fill="none" stroke="#FF713D" stroke-width="17"
-stroke-linecap="round"/>
-</svg>
-<div class="nome">VUPA<span>.</span></div>
-</div>
+  <div class="brand">VU<span>PA</span></div>
+  <div class="header-text">Sua corrida, segura.</div>
 </header>
 
 <main>
-<section>
-<h1 class="slogan">
-Sua corrida,<br>
-<span>segura.</span>
-</h1>
+  <section class="container">
+    <span class="tag">ÁREA DO PASSAGEIRO</span>
+    <h1>Crie sua conta VUPA</h1>
+    <p class="subtitle">
+      Cadastre-se para solicitar suas corridas com praticidade e segurança.
+    </p>
 
-<p class="descricao">
-Mobilidade conectando passageiros e motoristas.
-Uma nova experiência para suas viagens de carro e moto.
-</p>
+    <form id="registerForm">
+      <div class="form-grid">
 
-<div class="botoes">
-<button class="passageiro" onclick="alert('Cadastro de passageiros em desenvolvimento.')">
-Sou passageiro
-</button>
-<button class="motorista" onclick="alert('Cadastro de motoristas em desenvolvimento.')">
-Quero dirigir
-</button>
-</div>
-</section>
+        <div class="field full">
+          <label for="name">NOME COMPLETO</label>
+          <input id="name" type="text" placeholder="Digite seu nome completo" autocomplete="name" required>
+        </div>
 
-<section class="visual">
-<h2>Sua corrida,<br>segura.</h2>
-<div class="carro">🚘</div>
-<p>VUPA — Mobilidade para todos.</p>
-</section>
+        <div class="field">
+          <label for="cpf">CPF</label>
+          <input id="cpf" type="text" placeholder="000.000.000-00" maxlength="14" required>
+        </div>
+
+        <div class="field">
+          <label for="birth">DATA DE NASCIMENTO</label>
+          <input id="birth" type="date" required>
+          <div class="hint">Cadastro permitido somente a partir dos 18 anos.</div>
+        </div>
+
+        <div class="field">
+          <label for="phone">CELULAR</label>
+          <input id="phone" type="tel" placeholder="(00) 00000-0000" maxlength="15" autocomplete="tel" required>
+        </div>
+
+        <div class="field">
+          <label for="email">E-MAIL</label>
+          <input id="email" type="email" placeholder="seuemail@exemplo.com" autocomplete="email" required>
+        </div>
+
+        <div class="field">
+          <label for="password">SENHA</label>
+          <input id="password" type="password" placeholder="Mínimo de 8 caracteres" minlength="8" required>
+        </div>
+
+        <div class="field">
+          <label for="confirmPassword">CONFIRMAR SENHA</label>
+          <input id="confirmPassword" type="password" placeholder="Repita sua senha" minlength="8" required>
+        </div>
+
+      </div>
+
+      <label class="checkline">
+        <input type="checkbox" id="terms" required>
+        <span>Declaro que tenho 18 anos ou mais e concordo com os Termos de Uso e a Política de Privacidade da VUPA.</span>
+      </label>
+
+      <button type="submit" id="submitButton">CRIAR MINHA CONTA</button>
+      <div id="message" class="message" role="alert"></div>
+    </form>
+
+    <div class="footer">
+      VUPA · Sua corrida, segura.
+    </div>
+  </section>
 </main>
 
-<footer>VUPA © 2026</footer>
+<script>
+const $ = id => document.getElementById(id);
+
+function digits(value) {
+  return value.replace(/\D/g, "");
+}
+
+function validCPF(value) {
+  const cpf = digits(value);
+  if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
+
+  let sum = 0;
+  for (let i = 0; i < 9; i++) sum += Number(cpf[i]) * (10 - i);
+  let first = (sum * 10) % 11;
+  if (first === 10) first = 0;
+  if (first !== Number(cpf[9])) return false;
+
+  sum = 0;
+  for (let i = 0; i < 10; i++) sum += Number(cpf[i]) * (11 - i);
+  let second = (sum * 10) % 11;
+  if (second === 10) second = 0;
+
+  return second === Number(cpf[10]);
+}
+
+function isAdult(dateValue) {
+  if (!dateValue) return false;
+
+  const birth = new Date(dateValue + "T00:00:00");
+  const today = new Date();
+
+  if (Number.isNaN(birth.getTime()) || birth > today) return false;
+
+  let age = today.getFullYear() - birth.getFullYear();
+  const birthdayHasPassed =
+    today.getMonth() > birth.getMonth() ||
+    (today.getMonth() === birth.getMonth() &&
+     today.getDate() >= birth.getDate());
+
+  if (!birthdayHasPassed) age--;
+  return age >= 18;
+}
+
+$("cpf").addEventListener("input", event => {
+  let value = digits(event.target.value).slice(0, 11);
+  value = value.replace(/(\d{3})(\d)/, "$1.$2");
+  value = value.replace(/(\d{3})(\d)/, "$1.$2");
+  value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+  event.target.value = value;
+});
+
+$("phone").addEventListener("input", event => {
+  let value = digits(event.target.value).slice(0, 11);
+  if (value.length > 10) {
+    value = value.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, "($1) $2-$3");
+  } else if (value.length > 6) {
+    value = value.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+  } else if (value.length > 2) {
+    value = value.replace(/^(\d{2})(\d+)/, "($1) $2");
+  }
+  event.target.value = value;
+});
+
+$("registerForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const message = $("message");
+  message.className = "message";
+  message.textContent = "";
+
+  const cpf = $("cpf").value;
+  const birth = $("birth").value;
+  const password = $("password").value;
+  const confirmation = $("confirmPassword").value;
+
+  function showError(text) {
+    message.className = "message error";
+    message.textContent = text;
+  }
+
+  if ($("name").value.trim().split(/\s+/).length < 2) {
+    return showError("Informe seu nome e sobrenome.");
+  }
+
+  if (!validCPF(cpf)) {
+    return showError("O CPF informado é inválido. Confira os números.");
+  }
+
+  if (!isAdult(birth)) {
+    return showError("A VUPA permite cadastro somente para pessoas com 18 anos ou mais.");
+  }
+
+  if (digits($("phone").value).length < 10) {
+    return showError("Informe um número de celular válido.");
+  }
+
+  if (password.length < 8) {
+    return showError("Sua senha precisa ter pelo menos 8 caracteres.");
+  }
+
+  if (password !== confirmation) {
+    return showError("As senhas não coincidem.");
+  }
+
+  if (!$("terms").checked) {
+    return showError("É necessário aceitar os Termos de Uso e a Política de Privacidade.");
+  }
+
+  showError("A validação da tela foi concluída. O cadastro ainda precisa ser conectado ao banco de dados da VUPA para verificar CPF duplicado, proteger os dados e criar a conta.");
+  message.className = "message success";
+});
+</script>
+
 </body>
 </html>
