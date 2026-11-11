@@ -2,272 +2,76 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#5427D9">
-  <title>VUPA | Sua corrida, segura.</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #f8f7fc;
-      color: #241b38;
-      min-height: 100vh;
-    }
-
-    header {
-      padding: 25px 7%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 34px;
-      font-weight: 900;
-      color: #5427D9;
-      letter-spacing: -2px;
-    }
-
-    .symbol {
-      width: 43px;
-      height: 43px;
-      background: #5427D9;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      color: white;
-      font-size: 29px;
-      font-weight: 900;
-      transform: rotate(-5deg);
-    }
-
-    .orange {
-      color: #FF713D;
-    }
-
-    main {
-      max-width: 1150px;
-      margin: auto;
-      padding: 65px 7%;
-      display: grid;
-      grid-template-columns: 1fr 0.85fr;
-      align-items: center;
-      gap: 55px;
-    }
-
-    .tag {
-      display: inline-block;
-      background: #eee8ff;
-      color: #5427D9;
-      padding: 10px 16px;
-      border-radius: 30px;
-      font-size: 13px;
-      font-weight: bold;
-      margin-bottom: 25px;
-    }
-
-    h1 {
-      font-size: clamp(43px, 6vw, 70px);
-      line-height: 1.04;
-      letter-spacing: -3px;
-      margin-bottom: 22px;
-    }
-
-    h1 span {
-      color: #5427D9;
-    }
-
-    .description {
-      color: #716a7e;
-      font-size: 18px;
-      line-height: 1.6;
-      max-width: 440px;
-      margin-bottom: 35px;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 13px;
-    }
-
-    .btn {
-      padding: 17px 25px;
-      border-radius: 13px;
-      text-decoration: none;
-      font-weight: bold;
-      text-align: center;
-      font-size: 15px;
-      cursor: pointer;
-      border: none;
-    }
-
-    .primary {
-      background: #5427D9;
-      color: white;
-      box-shadow: 0 8px 20px #5427d933;
-    }
-
-    .secondary {
-      background: #fff;
-      color: #5427D9;
-      border: 1px solid #ded5f5;
-    }
-
-    .visual {
-      background: linear-gradient(145deg, #5427D9, #35128f);
-      border-radius: 35px;
-      padding: 45px 30px;
-      min-height: 390px;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .visual::after {
-      content: "";
-      position: absolute;
-      width: 230px;
-      height: 230px;
-      background: #ff713d;
-      border-radius: 50%;
-      right: -90px;
-      top: -90px;
-      opacity: .95;
-    }
-
-    .visual-content {
-      position: relative;
-      z-index: 1;
-    }
-
-    .visual h2 {
-      font-size: 32px;
-      line-height: 1.2;
-      max-width: 260px;
-      margin-bottom: 15px;
-    }
-
-    .car {
-      font-size: 105px;
-      text-align: center;
-      margin: 25px 0;
-    }
-
-    .visual p {
-      color: #e9e2ff;
-      line-height: 1.5;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px;
-      color: #8c8499;
-      font-size: 13px;
-    }
-
-    @media (max-width: 750px) {
-      header {
-        padding: 20px 6%;
-      }
-
-      main {
-        grid-template-columns: 1fr;
-        padding: 40px 6%;
-        gap: 40px;
-      }
-
-      h1 {
-        font-size: 49px;
-      }
-
-      .description {
-        font-size: 16px;
-      }
-
-      .buttons {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .visual {
-        min-height: 310px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#5126D8">
+<title>VUPA — Sua corrida, segura.</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#fff;color:#21183c}
+:root{--purple:#5126D8;--orange:#FF713D}
+header{padding:25px 7%;display:flex;align-items:center}
+.brand{display:flex;align-items:center;gap:12px}
+.brand svg{width:52px;height:52px}
+.brand-name{font-size:37px;font-weight:900;letter-spacing:-2px;color:var(--purple)}
+.brand-name span{color:var(--orange)}
+main{min-height:75vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:45px;padding:45px 8%}
+h1{font-size:clamp(42px,6vw,68px);line-height:1.05;letter-spacing:-3px;color:var(--purple)}
+h1 span{color:var(--orange)}
+.slogan{font-size:23px;font-weight:700;margin:24px 0;color:#30234d}
+.description{font-size:17px;line-height:1.7;color:#777083;max-width:440px}
+.actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+button{padding:17px 25px;border:0;border-radius:12px;font-size:15px;font-weight:bold;cursor:pointer}
+.passenger{background:var(--purple);color:white}
+.driver{background:#fff;color:var(--purple);border:2px solid var(--purple)}
+.visual{background:linear-gradient(145deg,#5126D8,#35118f);border-radius:30px;padding:40px;color:white;min-height:390px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative}
+.visual:after{content:"";position:absolute;width:210px;height:210px;border-radius:50%;background:var(--orange);right:-80px;top:-90px}
+.visual h2{font-size:32px;position:relative;z-index:1}
+.visual h2 span{color:#FFAD86}
+.car{font-size:100px;text-align:center;padding:30px 0}
+.visual p{line-height:1.6;color:#eee8ff;position:relative;z-index:1}
+footer{text-align:center;color:#898296;padding:25px;font-size:13px}
+@media(max-width:750px){
+main{grid-template-columns:1fr;padding:35px 7%;gap:35px}
+h1{font-size:49px}
+.actions{flex-direction:column}
+button{width:100%}
+.visual{min-height:310px}
+}
+</style>
 </head>
-
 <body>
-
-  <header>
-    <div class="logo">
-      <div class="symbol">V</div>
-      VUPA<span class="orange">.</span>
-    </div>
-  </header>
-
-  <main>
-    <section>
-      <div class="tag">MOBILIDADE DO SEU JEITO</div>
-
-      <h1>
-        Sua cidade.<br>
-        Seu caminho.<br>
-        <span>Sua VUPA.</span>
-      </h1>
-
-      <p class="description">
-        Uma nova maneira de se movimentar.
-        Conectamos passageiros e motoristas
-        para tornar cada viagem mais simples.
-      </p>
-
-      <div class="buttons">
-        <button class="btn primary"
-          onclick="alert('O cadastro de passageiros será desenvolvido na próxima etapa!')">
-          Quero viajar
-        </button>
-
-        <button class="btn secondary"
-          onclick="alert('O cadastro de motoristas será desenvolvido na próxima etapa!')">
-          Quero dirigir
-        </button>
-      </div>
-    </section>
-
-    <section class="visual">
-      <div class="visual-content">
-        <h2>Sua corrida,<br><span class="orange">segura.</span></h2>
-        <p>Uma nova experiência de mobilidade está chegando.</p>
-      </div>
-
-      <div class="car">🚘</div>
-
-      <div class="visual-content">
-        <p>Carros e motos. Uma plataforma feita para conectar pessoas.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    VUPA © 2026 — Sua corrida, segura.
-  </footer>
-
+<header>
+<div class="brand">
+<svg viewBox="0 0 100 100" role="img" aria-label="Símbolo VUPA">
+<path d="M17 18 L43 76 Q49 89 57 76 L83 18"
+fill="none" stroke="#5126D8" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M56 76 L83 18" fill="none" stroke="#FF713D" stroke-width="15" stroke-linecap="round"/>
+<circle cx="83" cy="18" r="8" fill="#FF713D"/>
+</svg>
+<div class="brand-name">VUPA<span>.</span></div>
+</div>
+</header>
+<main>
+<section>
+<h1>Sua cidade.<br>Seu destino.<br><span>VUPA.</span></h1>
+<p class="slogan">Sua corrida, segura.</p>
+<p class="description">
+Mobilidade para conectar pessoas e destinos.
+Escolha seu caminho, solicite sua viagem e
+conte com uma nova experiência de transporte.
+</p>
+<div class="actions">
+<button class="passenger" onclick="alert('Cadastro de passageiros em desenvolvimento.')">Sou passageiro</button>
+<button class="driver" onclick="alert('Cadastro de motoristas em desenvolvimento.')">Quero dirigir</button>
+</div>
+</section>
+<section class="visual">
+<h2>Sua corrida,<br><span>segura.</span></h2>
+<div class="car">🚘</div>
+<p>Carros e motos. Passageiros e motoristas conectados pela VUPA.</p>
+</section>
+</main>
+<footer>VUPA © 2026 — Sua corrida, segura.</footer>
 </body>
 </html>
