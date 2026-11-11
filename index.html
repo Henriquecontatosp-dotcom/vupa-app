@@ -9,7 +9,7 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--roxo:#5126D8;--escuro:#321080;--laranja:#FF713D}
+:root{--roxo:#5126D8;--laranja:#FF713D}
 body{font-family:Arial,sans-serif;min-height:100vh;background:var(--roxo);color:white}
 .tela{min-height:100vh;display:none;align-items:center;justify-content:center;flex-direction:column;padding:30px 24px;text-align:center}
 .tela.ativa{display:flex}
@@ -28,7 +28,7 @@ h1{font-size:clamp(27px,6vw,36px);line-height:1.2;max-width:420px}
 .perfil span{display:block;font-size:13px;color:#777;font-weight:normal;margin-top:5px}
 .opcao{display:flex;align-items:center;justify-content:center;gap:14px;padding:12px 18px;font-size:16px}
 .opcao svg{width:25px;height:25px;flex-shrink:0}
-.mensagem{font-size:14px;line-height:1.5;margin-top:18px;max-width:350px;opacity:.95}
+.mensagem{font-size:14px;line-height:1.5;margin-top:18px;max-width:350px;overflow-wrap:anywhere}
 .voltar{background:none;border:0;color:white;font-size:15px;margin-top:25px;cursor:pointer}
 .indicador{width:42px;height:4px;background:#ffffff55;border-radius:10px;margin-top:55px;overflow:hidden}
 .indicador:after{content:"";display:block;height:100%;background:var(--laranja);animation:carregar 1.8s ease forwards}
@@ -36,70 +36,20 @@ h1{font-size:clamp(27px,6vw,36px);line-height:1.2;max-width:420px}
 @keyframes carregar{from{transform:translateX(-100%)}to{transform:translateX(0)}}
 @keyframes pulsar{50%{transform:scale(1.05)}}
 
-/* CADASTRO */
-
-.formulario{
-  width:100%;
-  max-width:390px;
-  display:grid;
-  gap:13px;
-  margin-top:25px;
-  text-align:left;
-}
-
-.formulario label{
-  font-size:13px;
-  font-weight:bold;
-  margin-bottom:-7px;
-}
-
-.formulario input{
-  width:100%;
-  min-height:51px;
-  border:1px solid #ffffff55;
-  border-radius:11px;
-  padding:13px 15px;
-  font-size:16px;
-  outline:none;
-  background:white;
-  color:#222;
-}
-
-.formulario input:focus{
-  border:2px solid var(--laranja);
-}
-
-.termos{
-  display:flex;
-  align-items:flex-start;
-  gap:10px;
-  font-size:13px;
-  line-height:1.5;
-  margin-top:5px;
-}
-
-.termos input{
-  width:18px;
-  height:18px;
-  flex-shrink:0;
-  margin-top:1px;
-  accent-color:var(--laranja);
-}
-
-.termos a{
-  color:white;
-  text-decoration:underline;
-}
-
-@media(max-width:500px){
-  .tela{padding:25px 20px}
-}
+.formulario{width:100%;max-width:390px;display:grid;gap:13px;margin-top:25px;text-align:left}
+.formulario label{font-size:13px;font-weight:bold;margin-bottom:-7px}
+.formulario input:not([type="checkbox"]){width:100%;min-height:51px;border:1px solid #ffffff55;border-radius:11px;padding:13px 15px;font-size:16px;outline:none;background:white;color:#222}
+.formulario input:focus,.campo:focus{border:2px solid var(--laranja)}
+.termos{display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.5;margin-top:5px}
+.termos input{width:18px;height:18px;flex-shrink:0;margin-top:1px;accent-color:var(--laranja)}
+.campo{width:100%;max-width:350px;min-height:55px;padding:15px;border:1px solid #ffffff55;border-radius:12px;font-size:22px;letter-spacing:9px;text-align:center;margin-top:25px;outline:none}
+.codigo-demo{background:#ffffff18;border:1px dashed #ffffff88;border-radius:12px;padding:14px;width:100%;max-width:350px;margin-top:20px;font-size:14px;line-height:1.6}
+.codigo-demo strong{display:block;font-size:25px;letter-spacing:6px;color:#fff;margin-top:5px}
+@media(max-width:500px){.tela{padding:25px 20px}}
 </style>
 </head>
 
 <body>
-
-<!-- ABERTURA -->
 
 <section id="splash" class="tela ativa">
   <div class="logo">VUPA<span>.</span></div>
@@ -107,63 +57,34 @@ h1{font-size:clamp(27px,6vw,36px);line-height:1.2;max-width:420px}
   <div class="indicador"></div>
 </section>
 
-<!-- GPS OBRIGATÓRIO -->
-
 <section id="gps" class="tela">
   <div class="icone-gps">⌖</div>
   <h1>Vamos encontrar você?</h1>
-  <p class="descricao">
-    A localização é obrigatória para utilizar a VUPA.
-    Precisamos dela para encontrar motoristas próximos,
-    calcular rotas e acompanhar suas corridas.
-  </p>
-  <button class="botao" id="permitirGps" onclick="solicitarGPS()">
-    Autorizar localização
-  </button>
+  <p class="descricao">A localização é obrigatória para utilizar a VUPA. Precisamos dela para encontrar motoristas próximos, calcular rotas e acompanhar suas corridas.</p>
+  <button class="botao" id="permitirGps" onclick="solicitarGPS()">Autorizar localização</button>
   <p class="mensagem" id="mensagemGps"></p>
 </section>
-
-<!-- ESCOLHA DE PERFIL -->
 
 <section id="perfis" class="tela">
   <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
   <h1>Como você quer usar a VUPA?</h1>
   <p class="descricao">Escolha seu perfil para continuar.</p>
-
   <div class="perfis">
-    <button class="perfil" onclick="escolherPerfil('passageiro')">
-      Sou passageiro
-      <span>Quero solicitar uma corrida</span>
-    </button>
-
-    <button class="perfil" onclick="escolherPerfil('motorista')">
-      Sou motorista
-      <span>Quero dirigir com a VUPA</span>
-    </button>
+    <button class="perfil" onclick="escolherPerfil('passageiro')">Sou passageiro<span>Quero solicitar uma corrida</span></button>
+    <button class="perfil" onclick="escolherPerfil('motorista')">Sou motorista<span>Quero dirigir com a VUPA</span></button>
   </div>
 </section>
-
-<!-- PASSAGEIRO -->
 
 <section id="passageiro" class="tela">
   <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
   <h1>Bem-vindo à VUPA!</h1>
   <p class="descricao">Como deseja continuar?</p>
-
   <div class="opcoes">
-    <button class="botao" onclick="abrirAcesso('entrar')">
-      Entrar na minha conta
-    </button>
-
-    <button class="botao branco" onclick="abrirAcesso('cadastro')">
-      Criar minha conta
-    </button>
+    <button class="botao" onclick="abrirAcesso('entrar')">Entrar na minha conta</button>
+    <button class="botao branco" onclick="abrirAcesso('cadastro')">Criar minha conta</button>
   </div>
-
   <button class="voltar" onclick="mostrarTela('perfis')">← Voltar</button>
 </section>
-
-<!-- ACESSO -->
 
 <section id="acesso" class="tela">
   <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
@@ -171,10 +92,8 @@ h1{font-size:clamp(27px,6vw,36px);line-height:1.2;max-width:420px}
   <p class="descricao" id="descricaoAcesso">Escolha uma forma de acesso.</p>
 
   <div class="opcoes">
-
     <button class="opcao" onclick="acessoTelefone()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#5126D8"
-      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#5126D8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M5 3h4l2 5-3 2a15 15 0 0 0 6 6l2-3 5 2v4c0 1-1 2-2 2A17 17 0 0 1 3 5c0-1 1-2 2-2z"/>
       </svg>
       Continuar com telefone
@@ -203,80 +122,99 @@ h1{font-size:clamp(27px,6vw,36px);line-height:1.2;max-width:420px}
       </svg>
       Continuar com Facebook
     </button>
-
   </div>
 
   <p class="mensagem" id="mensagemAcesso"></p>
   <button class="voltar" onclick="mostrarTela('passageiro')">← Voltar</button>
 </section>
 
-<!-- CADASTRO DO PASSAGEIRO -->
+<!-- CADASTRO -->
 
 <section id="cadastro" class="tela">
   <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
-
   <h1>Vamos criar sua conta?</h1>
-  <p class="descricao">
-    Informe seus dados para começar a usar a VUPA.
-  </p>
+  <p class="descricao">Informe seus dados para começar a usar a VUPA.</p>
 
   <form class="formulario" id="formCadastro" onsubmit="validarCadastro(event)">
-
     <label for="nome">Nome completo</label>
-    <input id="nome" name="nome" type="text"
-      placeholder="Digite seu nome completo"
-      autocomplete="name" required>
+    <input id="nome" type="text" placeholder="Digite seu nome completo" autocomplete="name" required>
 
     <label for="cpf">CPF</label>
-    <input id="cpf" name="cpf" type="text"
-      placeholder="000.000.000-00"
-      inputmode="numeric" maxlength="14" required>
+    <input id="cpf" type="text" placeholder="000.000.000-00" inputmode="numeric" maxlength="14" required>
 
     <label for="nascimento">Data de nascimento</label>
-    <input id="nascimento" name="nascimento" type="date" required>
+    <input id="nascimento" type="date" required>
 
     <label for="celular">Telefone com DDD</label>
-    <input id="celular" name="celular" type="tel"
-      placeholder="(00) 00000-0000"
-      inputmode="tel" maxlength="15"
-      autocomplete="tel" required>
+    <input id="celular" type="tel" placeholder="(00) 00000-0000" inputmode="tel" maxlength="15" autocomplete="tel" required>
 
     <label for="email">E-mail</label>
-    <input id="email" name="email" type="email"
-      placeholder="seuemail@exemplo.com"
-      autocomplete="email" required>
+    <input id="email" type="email" placeholder="seuemail@exemplo.com" autocomplete="email" required>
 
     <label class="termos">
       <input id="aceiteTermos" type="checkbox" required>
       <span>Li e aceito os termos de uso e a política de privacidade da VUPA.</span>
     </label>
 
-    <button class="botao" type="submit">
-      Continuar cadastro
-    </button>
-
+    <button class="botao" type="submit">Continuar cadastro</button>
   </form>
 
   <p class="mensagem" id="mensagemCadastro"></p>
-
-  <button class="voltar" onclick="mostrarTela('passageiro')">
-    ← Voltar
-  </button>
+  <button class="voltar" onclick="mostrarTela('passageiro')">← Voltar</button>
 </section>
 
-<!-- TELEFONE PARA LOGIN -->
+<!-- CONFIRMAÇÃO DO TELEFONE -->
+
+<section id="verificacao" class="tela">
+  <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
+  <h1>Confirme seu telefone</h1>
+  <p class="descricao" id="textoVerificacao">
+    Digite o código de 6 dígitos para confirmar seu número.
+  </p>
+
+  <div class="codigo-demo">
+    Modo de demonstração — nenhum SMS foi enviado.
+    <strong id="codigoDemonstracao">------</strong>
+  </div>
+
+  <input
+    class="campo"
+    id="codigoInput"
+    type="text"
+    inputmode="numeric"
+    autocomplete="one-time-code"
+    maxlength="6"
+    placeholder="000000"
+    aria-label="Código de seis dígitos"
+  >
+
+  <button class="botao" onclick="confirmarCodigo()">Confirmar código</button>
+  <button class="botao secundario" onclick="reenviarCodigo()">Gerar outro código</button>
+
+  <p class="mensagem" id="mensagemCodigo"></p>
+  <button class="voltar" onclick="mostrarTela('cadastro')">← Voltar ao cadastro</button>
+</section>
+
+<!-- CONCLUSÃO DEMONSTRATIVA -->
+
+<section id="cadastroConcluido" class="tela">
+  <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
+  <h1>Telefone confirmado!</h1>
+  <p class="descricao">
+    A etapa de demonstração foi concluída. O cadastro ainda precisará ser enviado e salvo no servidor para criar sua conta de verdade.
+  </p>
+  <button class="botao" onclick="mostrarTela('passageiro')">Voltar ao início</button>
+</section>
+
+<!-- LOGIN POR TELEFONE -->
 
 <section id="telefone" class="tela">
   <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
   <h1>Seu número de telefone</h1>
   <p class="descricao">Informe seu número para continuar com segurança.</p>
-
-  <input class="campo" id="telefoneInput" type="tel"
-    inputmode="tel" placeholder="(00) 00000-0000" maxlength="15">
-
+  <input class="campo" id="telefoneInput" type="tel" inputmode="tel" placeholder="(00) 00000-0000" maxlength="15">
   <button class="botao" onclick="validarTelefone()">Continuar</button>
   <p class="mensagem" id="mensagemTelefone"></p>
-
   <button class="voltar" onclick="mostrarTela('acesso')">← Voltar</button>
 </section>
 
@@ -285,19 +223,18 @@ h1{font-size:clamp(27px,6vw,36px);line-height:1.2;max-width:420px}
 <section id="motorista" class="tela">
   <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
   <h1>Área do motorista</h1>
-  <p class="descricao">
-    A próxima etapa será o acesso e cadastro dos motoristas parceiros.
-  </p>
-  <button class="botao secundario" onclick="mostrarTela('perfis')">
-    Voltar
-  </button>
+  <p class="descricao">A próxima etapa será o acesso e cadastro dos motoristas parceiros.</p>
+  <button class="botao secundario" onclick="mostrarTela('perfis')">Voltar</button>
 </section>
 
 <script>
 const telas = [
-  "splash","gps","perfis","passageiro",
-  "acesso","cadastro","telefone","motorista"
+  "splash","gps","perfis","passageiro","acesso",
+  "cadastro","verificacao","cadastroConcluido","telefone","motorista"
 ];
+
+let codigoAtual = "";
+let telefonePendente = "";
 
 function mostrarTela(id) {
   telas.forEach(tela => {
@@ -315,8 +252,7 @@ function solicitarGPS() {
   const mensagem = document.getElementById("mensagemGps");
 
   if (!navigator.geolocation) {
-    mensagem.textContent =
-      "Este navegador não disponibiliza localização. Utilize um navegador compatível.";
+    mensagem.textContent = "Este navegador não disponibiliza localização.";
     return;
   }
 
@@ -335,14 +271,11 @@ function solicitarGPS() {
       botao.textContent = "Tentar novamente";
 
       if (erro.code === 1) {
-        mensagem.textContent =
-          "A localização é obrigatória. Habilite a permissão nas configurações do navegador ou aparelho e tente novamente.";
+        mensagem.textContent = "A localização é obrigatória. Habilite a permissão nas configurações do navegador ou aparelho e tente novamente.";
       } else if (erro.code === 2) {
-        mensagem.textContent =
-          "Não conseguimos identificar sua localização. Verifique se o GPS está ativado e tente novamente.";
+        mensagem.textContent = "Não conseguimos identificar sua localização. Verifique se o GPS está ativado e tente novamente.";
       } else {
-        mensagem.textContent =
-          "A localização demorou para responder. Tente novamente.";
+        mensagem.textContent = "A localização demorou para responder. Tente novamente.";
       }
     },
     {enableHighAccuracy:true, timeout:15000, maximumAge:0}
@@ -352,11 +285,7 @@ function solicitarGPS() {
 // PERFIS
 
 function escolherPerfil(perfil) {
-  if (perfil === "passageiro") {
-    mostrarTela("passageiro");
-  } else {
-    mostrarTela("motorista");
-  }
+  mostrarTela(perfil === "passageiro" ? "passageiro" : "motorista");
 }
 
 // ENTRAR OU CADASTRAR
@@ -370,13 +299,12 @@ function abrirAcesso(tipo) {
   }
 
   document.getElementById("tituloAcesso").textContent = "Entrar na VUPA";
-  document.getElementById("descricaoAcesso").textContent =
-    "Escolha uma forma de acesso à sua conta.";
+  document.getElementById("descricaoAcesso").textContent = "Escolha uma forma de acesso à sua conta.";
   document.getElementById("mensagemAcesso").textContent = "";
   mostrarTela("acesso");
 }
 
-// MÁSCARA CPF
+// MÁSCARAS
 
 document.getElementById("cpf").addEventListener("input", function() {
   let valor = this.value.replace(/\D/g, "").slice(0, 11);
@@ -386,47 +314,41 @@ document.getElementById("cpf").addEventListener("input", function() {
   this.value = valor;
 });
 
-// MÁSCARA TELEFONE
+function aplicarMascaraTelefone(campo) {
+  campo.addEventListener("input", function() {
+    let valor = this.value.replace(/\D/g, "").slice(0, 11);
 
-document.getElementById("celular").addEventListener("input", function() {
-  let valor = this.value.replace(/\D/g, "").slice(0, 11);
+    if (valor.length > 10) {
+      valor = valor.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, "($1) $2-$3");
+    } else if (valor.length > 6) {
+      valor = valor.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+    } else if (valor.length > 2) {
+      valor = valor.replace(/^(\d{2})(\d+)/, "($1) $2");
+    }
 
-  if (valor.length > 10) {
-    valor = valor.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, "($1) $2-$3");
-  } else if (valor.length > 6) {
-    valor = valor.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, "($1) $2-$3");
-  } else if (valor.length > 2) {
-    valor = valor.replace(/^(\d{2})(\d+)/, "($1) $2");
-  }
+    this.value = valor;
+  });
+}
 
-  this.value = valor;
-});
+aplicarMascaraTelefone(document.getElementById("celular"));
+aplicarMascaraTelefone(document.getElementById("telefoneInput"));
 
 // VALIDAÇÃO CPF
 
 function cpfValido(cpf) {
   cpf = cpf.replace(/\D/g, "");
 
-  if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
-    return false;
-  }
+  if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
 
   let soma = 0;
-
-  for (let i = 0; i < 9; i++) {
-    soma += Number(cpf[i]) * (10 - i);
-  }
+  for (let i = 0; i < 9; i++) soma += Number(cpf[i]) * (10 - i);
 
   let digito = (soma * 10) % 11;
   if (digito === 10) digito = 0;
-
   if (digito !== Number(cpf[9])) return false;
 
   soma = 0;
-
-  for (let i = 0; i < 10; i++) {
-    soma += Number(cpf[i]) * (11 - i);
-  }
+  for (let i = 0; i < 10; i++) soma += Number(cpf[i]) * (11 - i);
 
   digito = (soma * 10) % 11;
   if (digito === 10) digito = 0;
@@ -434,17 +356,16 @@ function cpfValido(cpf) {
   return digito === Number(cpf[10]);
 }
 
-// VALIDAÇÃO DE IDADE
+// IDADE MÍNIMA
 
 function maiorDeIdade(data) {
   const nascimento = new Date(data + "T00:00:00");
   const hoje = new Date();
 
-  if (Number.isNaN(nascimento.getTime()) || nascimento > hoje) {
-    return false;
-  }
+  if (Number.isNaN(nascimento.getTime()) || nascimento > hoje) return false;
 
   let idade = hoje.getFullYear() - nascimento.getFullYear();
+
   const aniversarioAindaNaoChegou =
     hoje.getMonth() < nascimento.getMonth() ||
     (hoje.getMonth() === nascimento.getMonth() &&
@@ -455,7 +376,7 @@ function maiorDeIdade(data) {
   return idade >= 18;
 }
 
-// CADASTRO
+// CADASTRO E GERAÇÃO DO CÓDIGO DEMONSTRATIVO
 
 function validarCadastro(evento) {
   evento.preventDefault();
@@ -499,11 +420,53 @@ function validarCadastro(evento) {
     return;
   }
 
-  mensagem.textContent =
-    "Dados validados nesta demonstração! A próxima etapa será confirmar seu telefone por SMS e salvar seu cadastro com segurança.";
+  telefonePendente = celular;
+  gerarCodigoDemonstracao();
+  mostrarTela("verificacao");
+}
 
-  // Nesta versão demonstrativa, os dados não são enviados
-  // nem armazenados. A integração segura será feita no backend.
+// CÓDIGO DE SEIS DÍGITOS — APENAS DEMONSTRAÇÃO
+
+function gerarCodigoDemonstracao() {
+  codigoAtual = String(Math.floor(100000 + Math.random() * 900000));
+
+  document.getElementById("codigoDemonstracao").textContent = codigoAtual;
+  document.getElementById("codigoInput").value = "";
+  document.getElementById("mensagemCodigo").textContent = "";
+
+  document.getElementById("textoVerificacao").textContent =
+    "Confirme o telefone terminado em " +
+    telefonePendente.slice(-4) +
+    " digitando o código de 6 dígitos.";
+}
+
+function reenviarCodigo() {
+  gerarCodigoDemonstracao();
+  document.getElementById("mensagemCodigo").textContent =
+    "Um novo código demonstrativo foi gerado. Nenhum SMS foi enviado.";
+}
+
+document.getElementById("codigoInput").addEventListener("input", function() {
+  this.value = this.value.replace(/\D/g, "").slice(0, 6);
+});
+
+function confirmarCodigo() {
+  const informado = document.getElementById("codigoInput").value;
+  const mensagem = document.getElementById("mensagemCodigo");
+
+  if (informado.length !== 6) {
+    mensagem.textContent = "Digite os seis números do código.";
+    return;
+  }
+
+  if (informado !== codigoAtual) {
+    mensagem.textContent = "Código incorreto. Confira e tente novamente.";
+    return;
+  }
+
+  codigoAtual = "";
+  document.getElementById("codigoDemonstracao").textContent = "------";
+  mostrarTela("cadastroConcluido");
 }
 
 // LOGIN POR TELEFONE
@@ -514,9 +477,7 @@ function acessoTelefone() {
 }
 
 function validarTelefone() {
-  const telefone = document.getElementById("telefoneInput")
-    .value.replace(/\D/g, "");
-
+  const telefone = document.getElementById("telefoneInput").value.replace(/\D/g, "");
   const mensagem = document.getElementById("mensagemTelefone");
 
   if (telefone.length !== 10 && telefone.length !== 11) {
@@ -525,7 +486,7 @@ function validarTelefone() {
   }
 
   mensagem.textContent =
-    "Número informado. O envio do código SMS será ativado após a integração do serviço de autenticação.";
+    "O acesso por SMS será ativado após a integração do serviço de autenticação.";
 }
 
 // LOGIN SOCIAL
