@@ -8,36 +8,223 @@
 <title>VUPA | Sua corrida, segura.</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--roxo:#5126D8;--escuro:#321080;--laranja:#FF713D}
-body{font-family:Arial,sans-serif;background:var(--roxo);color:white;min-height:100vh}
-.tela{min-height:100vh;display:none;align-items:center;justify-content:center;flex-direction:column;padding:30px 24px;text-align:center}
-.tela.ativa{display:flex}
-.logo{font-size:clamp(70px,18vw,105px);font-weight:900;letter-spacing:-7px;color:var(--laranja)}
-.logo span{color:white}
-.slogan{margin-top:10px;letter-spacing:1px}
-.icone-gps{width:90px;height:90px;border:2px solid #ffffff55;border-radius:50%;display:grid;place-items:center;font-size:42px;margin-bottom:28px}
-h1{font-size:clamp(27px,6vw,36px);line-height:1.2;max-width:420px}
-.descricao{font-size:16px;line-height:1.6;opacity:.85;max-width:390px;margin-top:16px}
-.botao{width:100%;max-width:350px;min-height:56px;border:0;border-radius:13px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:18px;background:var(--laranja);color:white}
-.secundario{background:transparent;border:1px solid #ffffff88}
-.branco{background:white;color:var(--roxo)}
-.perfis,.opcoes{width:100%;max-width:350px;display:grid;gap:14px;margin-top:30px}
-.perfil,.opcao{background:white;color:var(--roxo);border:0;border-radius:15px;min-height:76px;font-size:18px;font-weight:bold;cursor:pointer}
-.perfil span{display:block;font-size:13px;color:#777;font-weight:normal;margin-top:5px}
-.campo{width:100%;max-width:350px;padding:17px;border:0;border-radius:12px;font-size:16px;margin-top:25px;outline:none}
-.mensagem{font-size:14px;line-height:1.5;margin-top:18px;max-width:350px;opacity:.9}
-.indicador{width:42px;height:4px;background:#ffffff55;border-radius:10px;margin-top:55px;overflow:hidden}
-.indicador:after{content:"";display:block;height:100%;background:var(--laranja);animation:carregar 1.8s ease forwards}
-@keyframes carregar{from{transform:translateX(-100%)}to{transform:translateX(0)}}
-@keyframes pulsar{50%{transform:scale(1.05)}}
-#splash .logo{animation:pulsar 1.5s infinite}
-.voltar{background:none;border:0;color:white;font-size:15px;margin-top:25px;cursor:pointer}
-@media(max-width:500px){.tela{padding:25px 20px}}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --roxo: #5126D8;
+  --escuro: #321080;
+  --laranja: #FF713D;
+  --branco: #FFFFFF;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  background: var(--roxo);
+  color: var(--branco);
+}
+
+.tela {
+  min-height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px 24px;
+  text-align: center;
+}
+
+.tela.ativa {
+  display: flex;
+}
+
+.logo {
+  font-size: clamp(70px, 18vw, 105px);
+  font-weight: 900;
+  letter-spacing: -7px;
+  color: var(--laranja);
+}
+
+.logo span {
+  color: white;
+}
+
+.slogan {
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: clamp(27px, 6vw, 36px);
+  line-height: 1.2;
+  max-width: 420px;
+}
+
+.descricao {
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: .88;
+  max-width: 390px;
+  margin-top: 16px;
+}
+
+.icone-gps {
+  width: 90px;
+  height: 90px;
+  border: 2px solid #ffffff66;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 48px;
+  margin-bottom: 28px;
+}
+
+.botao {
+  width: 100%;
+  max-width: 350px;
+  min-height: 56px;
+  border: 0;
+  border-radius: 13px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 18px;
+  background: var(--laranja);
+  color: white;
+}
+
+.botao:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
+.secundario {
+  background: transparent;
+  border: 1px solid #ffffff88;
+}
+
+.branco {
+  background: white;
+  color: var(--roxo);
+}
+
+.perfis,
+.opcoes {
+  width: 100%;
+  max-width: 350px;
+  display: grid;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.perfil,
+.opcao {
+  background: white;
+  color: var(--roxo);
+  border: 0;
+  border-radius: 15px;
+  min-height: 76px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.perfil span {
+  display: block;
+  font-size: 13px;
+  color: #777;
+  font-weight: normal;
+  margin-top: 5px;
+}
+
+.opcao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 12px 18px;
+  font-size: 16px;
+}
+
+.opcao svg {
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+}
+
+.mensagem {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 18px;
+  max-width: 350px;
+  opacity: .95;
+}
+
+.voltar {
+  background: none;
+  border: 0;
+  color: white;
+  font-size: 15px;
+  margin-top: 25px;
+  cursor: pointer;
+}
+
+.campo {
+  width: 100%;
+  max-width: 350px;
+  padding: 17px;
+  border: 0;
+  border-radius: 12px;
+  font-size: 16px;
+  margin-top: 25px;
+  outline: none;
+}
+
+.indicador {
+  width: 42px;
+  height: 4px;
+  background: #ffffff55;
+  border-radius: 10px;
+  margin-top: 55px;
+  overflow: hidden;
+}
+
+.indicador::after {
+  content: "";
+  display: block;
+  height: 100%;
+  background: var(--laranja);
+  animation: carregar 1.8s ease forwards;
+}
+
+#splash .logo {
+  animation: pulsar 1.5s infinite;
+}
+
+@keyframes carregar {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes pulsar {
+  50% { transform: scale(1.05); }
+}
+
+@media(max-width: 500px) {
+  .tela {
+    padding: 25px 20px;
+  }
+}
 </style>
 </head>
 
 <body>
+
+<!-- ABERTURA -->
 
 <section id="splash" class="tela ativa">
   <div class="logo">VUPA<span>.</span></div>
@@ -45,158 +232,423 @@ h1{font-size:clamp(27px,6vw,36px);line-height:1.2;max-width:420px}
   <div class="indicador"></div>
 </section>
 
+<!-- LOCALIZAÇÃO OBRIGATÓRIA -->
+
 <section id="gps" class="tela">
+
   <div class="icone-gps">⌖</div>
+
   <h1>Vamos encontrar você?</h1>
-  <p class="descricao">Permita o acesso à localização para encontrar motoristas próximos e facilitar suas viagens.</p>
-  <button class="botao" id="permitirGps" onclick="solicitarGPS()">Permitir localização</button>
-  <button class="botao secundario" onclick="continuarSemGPS()">Continuar sem GPS</button>
+
+  <p class="descricao">
+    A localização é obrigatória para utilizar a VUPA.
+    Precisamos dela para encontrar motoristas próximos,
+    calcular rotas e acompanhar suas corridas.
+  </p>
+
+  <button class="botao" id="permitirGps" onclick="solicitarGPS()">
+    Autorizar localização
+  </button>
+
   <p class="mensagem" id="mensagemGps"></p>
+
 </section>
+
+<!-- ESCOLHA DE PERFIL -->
 
 <section id="perfis" class="tela">
-  <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
-  <h1>Como você quer usar a VUPA?</h1>
-  <p class="descricao">Escolha seu perfil para continuar.</p>
-  <div class="perfis">
-    <button class="perfil" onclick="escolherPerfil('passageiro')">Sou passageiro<span>Quero solicitar uma corrida</span></button>
-    <button class="perfil" onclick="escolherPerfil('motorista')">Sou motorista<span>Quero dirigir com a VUPA</span></button>
+
+  <div class="logo" style="font-size:65px">
+    VUPA<span>.</span>
   </div>
+
+  <h1>Como você quer usar a VUPA?</h1>
+
+  <p class="descricao">
+    Escolha seu perfil para continuar.
+  </p>
+
+  <div class="perfis">
+
+    <button class="perfil" onclick="escolherPerfil('passageiro')">
+      Sou passageiro
+      <span>Quero solicitar uma corrida</span>
+    </button>
+
+    <button class="perfil" onclick="escolherPerfil('motorista')">
+      Sou motorista
+      <span>Quero dirigir com a VUPA</span>
+    </button>
+
+  </div>
+
 </section>
+
+<!-- PASSAGEIRO -->
 
 <section id="passageiro" class="tela">
-  <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
-  <h1>Bem-vindo à VUPA!</h1>
-  <p class="descricao">Como deseja continuar?</p>
-  <div class="opcoes">
-    <button class="botao" onclick="abrirAcesso('entrar')">Entrar na minha conta</button>
-    <button class="botao branco" onclick="abrirAcesso('cadastro')">Criar minha conta</button>
+
+  <div class="logo" style="font-size:65px">
+    VUPA<span>.</span>
   </div>
-  <button class="voltar" onclick="mostrarTela('perfis')">← Voltar</button>
+
+  <h1>Bem-vindo à VUPA!</h1>
+
+  <p class="descricao">
+    Como deseja continuar?
+  </p>
+
+  <div class="opcoes">
+
+    <button class="botao" onclick="abrirAcesso('entrar')">
+      Entrar na minha conta
+    </button>
+
+    <button class="botao branco" onclick="abrirAcesso('cadastro')">
+      Criar minha conta
+    </button>
+
+  </div>
+
+  <button class="voltar" onclick="mostrarTela('perfis')">
+    ← Voltar
+  </button>
+
 </section>
 
+<!-- ACESSO DO PASSAGEIRO -->
+
 <section id="acesso" class="tela">
-  <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
+
+  <div class="logo" style="font-size:65px">
+    VUPA<span>.</span>
+  </div>
+
   <h1 id="tituloAcesso">Entrar na VUPA</h1>
-  <p class="descricao" id="descricaoAcesso">Escolha uma forma de acesso.</p>
+
+  <p class="descricao" id="descricaoAcesso">
+    Escolha uma forma de acesso.
+  </p>
 
   <div class="opcoes">
-    <button class="opcao" onclick="acessoTelefone()">Continuar com telefone</button>
-    <button class="opcao" onclick="integracaoPendente('Google')">G Continuar com Google</button>
-    <button class="opcao" onclick="integracaoPendente('Apple')">Continuar com Apple</button>
-    <button class="opcao" onclick="integracaoPendente('Facebook')">f Continuar com Facebook</button>
+
+    <!-- TELEFONE -->
+
+    <button class="opcao" onclick="acessoTelefone()">
+
+      <svg viewBox="0 0 24 24" fill="none"
+      stroke="#5126D8" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+
+        <path d="M5 3h4l2 5-3 2a15 15 0 0 0 6 6l2-3 5 2v4c0 1-1 2-2 2A17 17 0 0 1 3 5c0-1 1-2 2-2z"/>
+
+      </svg>
+
+      Continuar com telefone
+
+    </button>
+
+    <!-- GOOGLE -->
+
+    <button class="opcao" onclick="integracaoPendente('Google')">
+
+      <svg viewBox="0 0 48 48">
+
+        <path fill="#4285F4"
+        d="M43.6 24.5c0-1.4-.1-2.8-.4-4.1H24v7.8h11a9.4 9.4 0 0 1-4.1 6.2v5h6.7c3.9-3.6 6-8.8 6-14.9z"/>
+
+        <path fill="#34A853"
+        d="M24 44c5.5 0 10.1-1.8 13.5-4.8l-6.7-5c-1.8 1.2-4.1 2-6.8 2-5.2 0-9.6-3.5-11.2-8.2H5.9v5.1A20 20 0 0 0 24 44z"/>
+
+        <path fill="#FBBC05"
+        d="M12.8 28a12 12 0 0 1 0-8v-5.1H5.9a20 20 0 0 0 0 18.2z"/>
+
+        <path fill="#EA4335"
+        d="M24 11.8c3 0 5.6 1 7.7 3.1l5.8-5.8C34 5.8 29.5 4 24 4A20 20 0 0 0 5.9 14.9l6.9 5.1c1.6-4.7 6-8.2 11.2-8.2z"/>
+
+      </svg>
+
+      Continuar com Google
+
+    </button>
+
+    <!-- APPLE -->
+
+    <button class="opcao" onclick="integracaoPendente('Apple')">
+
+      <svg viewBox="0 0 24 24" fill="#000000">
+
+        <path d="M16.4 12.8c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.5-.2-2.9.9-3.7.9-.8 0-2-.9-3.3-.9-1.7 0-3.2 1-4.1 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.5 3.2 2.4 1.3-.1 1.8-.8 3.4-.8s2 .8 3.4.8c1.4 0 2.3-1.2 3.2-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-3.4-1.3-3.4-4.4zM14 5.8c.7-.9 1.2-2.1 1.1-3.3-1.1.1-2.4.7-3.2 1.6-.7.8-1.3 2-1.1 3.2 1.2.1 2.4-.6 3.2-1.5z"/>
+
+      </svg>
+
+      Continuar com Apple
+
+    </button>
+
+    <!-- FACEBOOK -->
+
+    <button class="opcao" onclick="integracaoPendente('Facebook')">
+
+      <svg viewBox="0 0 24 24" fill="#1877F2">
+
+        <path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.3c0-3 1.8-4.7 4.5-4.7 1.3 0 2.6.2 2.6.2v2.9h-1.5c-1.5 0-2 .9-2 1.9V12h3.4l-.5 3.5h-2.9v8.4A12 12 0 0 0 24 12z"/>
+
+      </svg>
+
+      Continuar com Facebook
+
+    </button>
+
   </div>
 
   <p class="mensagem" id="mensagemAcesso"></p>
-  <button class="voltar" onclick="mostrarTela('passageiro')">← Voltar</button>
+
+  <button class="voltar" onclick="mostrarTela('passageiro')">
+    ← Voltar
+  </button>
+
 </section>
+
+<!-- ACESSO POR TELEFONE -->
 
 <section id="telefone" class="tela">
-  <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
+
+  <div class="logo" style="font-size:65px">
+    VUPA<span>.</span>
+  </div>
+
   <h1>Seu número de telefone</h1>
-  <p class="descricao">Informe seu número para continuar com segurança.</p>
 
-  <input class="campo" id="telefoneInput" type="tel" inputmode="tel" placeholder="(00) 00000-0000" maxlength="15">
+  <p class="descricao">
+    Informe seu número para continuar com segurança.
+  </p>
 
-  <button class="botao" onclick="validarTelefone()">Continuar</button>
+  <input
+    class="campo"
+    id="telefoneInput"
+    type="tel"
+    inputmode="tel"
+    placeholder="(00) 00000-0000"
+    maxlength="15"
+  >
+
+  <button class="botao" onclick="validarTelefone()">
+    Continuar
+  </button>
+
   <p class="mensagem" id="mensagemTelefone"></p>
-  <button class="voltar" onclick="mostrarTela('acesso')">← Voltar</button>
+
+  <button class="voltar" onclick="mostrarTela('acesso')">
+    ← Voltar
+  </button>
+
 </section>
 
+<!-- ÁREA DO MOTORISTA -->
+
 <section id="motorista" class="tela">
-  <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
+
+  <div class="logo" style="font-size:65px">
+    VUPA<span>.</span>
+  </div>
+
   <h1>Área do motorista</h1>
-  <p class="descricao">A próxima etapa será o acesso e cadastro dos motoristas parceiros.</p>
-  <button class="botao secundario" onclick="mostrarTela('perfis')">Voltar</button>
+
+  <p class="descricao">
+    A próxima etapa será o acesso e cadastro
+    dos motoristas parceiros.
+  </p>
+
+  <button class="botao secundario" onclick="mostrarTela('perfis')">
+    Voltar
+  </button>
+
 </section>
 
 <script>
-const telas=["splash","gps","perfis","passageiro","acesso","telefone","motorista"];
-let tipoAcesso="entrar";
 
-function mostrarTela(id){
-  telas.forEach(t=>{
-    document.getElementById(t).classList.remove("ativa");
+const telas = [
+  "splash",
+  "gps",
+  "perfis",
+  "passageiro",
+  "acesso",
+  "telefone",
+  "motorista"
+];
+
+function mostrarTela(id) {
+
+  telas.forEach(tela => {
+    document.getElementById(tela).classList.remove("ativa");
   });
+
   document.getElementById(id).classList.add("ativa");
+
 }
 
-setTimeout(()=>mostrarTela("gps"),2200);
+setTimeout(() => {
+  mostrarTela("gps");
+}, 2200);
 
-function solicitarGPS(){
-  const botao=document.getElementById("permitirGps");
-  const mensagem=document.getElementById("mensagemGps");
 
-  if(!navigator.geolocation){
-    mensagem.textContent="Localização não disponível neste navegador.";
+// GPS OBRIGATÓRIO
+
+function solicitarGPS() {
+
+  const botao = document.getElementById("permitirGps");
+  const mensagem = document.getElementById("mensagemGps");
+
+  if (!navigator.geolocation) {
+
+    mensagem.textContent =
+      "Este navegador não disponibiliza localização. Utilize um navegador compatível.";
+
     return;
+
   }
 
-  botao.disabled=true;
-  botao.textContent="Localizando...";
-  mensagem.textContent="Aguardando autorização do aparelho...";
+  botao.disabled = true;
+  botao.textContent = "Localizando...";
+  mensagem.textContent = "Aguardando autorização do aparelho...";
 
   navigator.geolocation.getCurrentPosition(
-    pos=>{
-      sessionStorage.setItem("vupa_latitude",pos.coords.latitude);
-      sessionStorage.setItem("vupa_longitude",pos.coords.longitude);
+
+    posicao => {
+
+      sessionStorage.setItem(
+        "vupa_latitude",
+        posicao.coords.latitude
+      );
+
+      sessionStorage.setItem(
+        "vupa_longitude",
+        posicao.coords.longitude
+      );
+
+      mensagem.textContent = "Localização autorizada!";
+
       mostrarTela("perfis");
+
     },
-    erro=>{
-      botao.disabled=false;
-      botao.textContent="Tentar novamente";
-      mensagem.textContent=erro.code===1
-        ?"Localização bloqueada. Você pode continuar sem GPS."
-        :"Não foi possível obter sua localização. Tente novamente.";
+
+    erro => {
+
+      botao.disabled = false;
+      botao.textContent = "Tentar novamente";
+
+      if (erro.code === 1) {
+
+        mensagem.textContent =
+          "A localização é obrigatória. Habilite a permissão nas configurações do navegador ou aparelho e tente novamente.";
+
+      } else if (erro.code === 2) {
+
+        mensagem.textContent =
+          "Não conseguimos identificar sua localização. Verifique se o GPS está ativado e tente novamente.";
+
+      } else {
+
+        mensagem.textContent =
+          "A localização demorou para responder. Tente novamente.";
+
+      }
+
     },
-    {enableHighAccuracy:true,timeout:15000,maximumAge:0}
+
+    {
+      enableHighAccuracy: true,
+      timeout: 15000,
+      maximumAge: 0
+    }
+
   );
+
 }
 
-function continuarSemGPS(){
-  mostrarTela("perfis");
-}
 
-function escolherPerfil(perfil){
-  if(perfil==="passageiro"){
+// ESCOLHA DE PERFIL
+
+function escolherPerfil(perfil) {
+
+  if (perfil === "passageiro") {
+
     mostrarTela("passageiro");
-  }else{
+
+  } else {
+
     mostrarTela("motorista");
+
   }
+
 }
 
-function abrirAcesso(tipo){
-  tipoAcesso=tipo;
-  document.getElementById("tituloAcesso").textContent=
-    tipo==="entrar"?"Entrar na VUPA":"Criar conta na VUPA";
-  document.getElementById("descricaoAcesso").textContent=
-    tipo==="entrar"?"Escolha uma forma de acesso à sua conta.":"Escolha como deseja iniciar seu cadastro.";
-  document.getElementById("mensagemAcesso").textContent="";
+
+// ENTRAR OU CRIAR CONTA
+
+function abrirAcesso(tipo) {
+
+  document.getElementById("tituloAcesso").textContent =
+    tipo === "entrar"
+    ? "Entrar na VUPA"
+    : "Criar conta na VUPA";
+
+  document.getElementById("descricaoAcesso").textContent =
+    tipo === "entrar"
+    ? "Escolha uma forma de acesso à sua conta."
+    : "Escolha como deseja iniciar seu cadastro.";
+
+  document.getElementById("mensagemAcesso").textContent = "";
+
   mostrarTela("acesso");
+
 }
 
-function acessoTelefone(){
-  document.getElementById("mensagemTelefone").textContent="";
+
+// TELEFONE
+
+function acessoTelefone() {
+
+  document.getElementById("mensagemTelefone").textContent = "";
+
   mostrarTela("telefone");
+
 }
 
-function validarTelefone(){
-  const telefone=document.getElementById("telefoneInput").value.replace(/\D/g,"");
-  const mensagem=document.getElementById("mensagemTelefone");
+function validarTelefone() {
 
-  if(telefone.length<10 || telefone.length>11){
-    mensagem.textContent="Informe um número de telefone válido com DDD.";
+  const telefone = document
+    .getElementById("telefoneInput")
+    .value.replace(/\D/g, "");
+
+  const mensagem = document.getElementById("mensagemTelefone");
+
+  if (telefone.length < 10 || telefone.length > 11) {
+
+    mensagem.textContent =
+      "Informe um número de telefone válido com DDD.";
+
     return;
+
   }
 
-  mensagem.textContent=
+  mensagem.textContent =
     "Número informado. O envio do código SMS será ativado após a integração do serviço de autenticação.";
+
 }
 
-function integracaoPendente(provedor){
-  document.getElementById("mensagemAcesso").textContent=
-    "O acesso por "+provedor+" será ativado após configurarmos a integração oficial.";
+
+// LOGIN SOCIAL
+
+function integracaoPendente(provedor) {
+
+  document.getElementById("mensagemAcesso").textContent =
+    "O acesso por " + provedor +
+    " será ativado após configurarmos a integração oficial.";
+
 }
+
 </script>
 
 </body>
