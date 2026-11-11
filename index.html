@@ -8,192 +8,36 @@
 <title>VUPA | Sua corrida, segura.</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-:root {
-  --roxo: #5126D8;
-  --roxo-escuro: #321080;
-  --laranja: #FF713D;
-  --branco: #FFFFFF;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  min-height: 100vh;
-  background: var(--roxo);
-  color: var(--branco);
-}
-
-.tela {
-  min-height: 100vh;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 30px 24px;
-  text-align: center;
-}
-
-.tela.ativa {
-  display: flex;
-}
-
-/* ABERTURA */
-
-#splash {
-  animation: aparecer 0.8s ease;
-}
-
-.logo {
-  font-size: clamp(76px, 18vw, 112px);
-  font-weight: 900;
-  letter-spacing: -7px;
-  color: var(--laranja);
-  animation: pulsar 1.5s ease-in-out infinite;
-}
-
-.logo span {
-  color: white;
-}
-
-.slogan {
-  font-size: 17px;
-  margin-top: 12px;
-  letter-spacing: 1px;
-  opacity: 0.9;
-}
-
-.indicador {
-  width: 42px;
-  height: 4px;
-  background: rgba(255,255,255,0.25);
-  border-radius: 10px;
-  margin-top: 65px;
-  overflow: hidden;
-}
-
-.indicador::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: var(--laranja);
-  animation: carregar 1.8s ease forwards;
-}
-
-/* GPS */
-
-.icone-gps {
-  width: 94px;
-  height: 94px;
-  border: 2px solid rgba(255,255,255,0.3);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 42px;
-  margin-bottom: 30px;
-}
-
-h1 {
-  font-size: clamp(27px, 6vw, 36px);
-  line-height: 1.2;
-  max-width: 420px;
-}
-
-.descricao {
-  font-size: 16px;
-  line-height: 1.6;
-  opacity: 0.85;
-  max-width: 390px;
-  margin-top: 16px;
-}
-
-.botao {
-  width: 100%;
-  max-width: 340px;
-  min-height: 56px;
-  border: none;
-  border-radius: 14px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 30px;
-  background: var(--laranja);
-  color: white;
-}
-
-.secundario {
-  margin-top: 14px;
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.5);
-}
-
-.botao:disabled {
-  opacity: 0.6;
-  cursor: wait;
-}
-
-/* PERFIS */
-
-.perfis {
-  width: 100%;
-  max-width: 360px;
-  display: grid;
-  gap: 16px;
-  margin-top: 35px;
-}
-
-.perfil {
-  background: white;
-  color: var(--roxo);
-  border: none;
-  border-radius: 16px;
-  min-height: 85px;
-  font-size: 19px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.perfil span {
-  display: block;
-  font-size: 13px;
-  color: #777;
-  font-weight: normal;
-  margin-top: 5px;
-}
-
-.mensagem {
-  min-height: 24px;
-  margin-top: 16px;
-  font-size: 14px;
-  opacity: 0.9;
-}
-
-@keyframes pulsar {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-@keyframes carregar {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
-}
-
-@keyframes aparecer {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--roxo:#5126D8;--escuro:#321080;--laranja:#FF713D}
+body{font-family:Arial,sans-serif;background:var(--roxo);color:white;min-height:100vh}
+.tela{min-height:100vh;display:none;align-items:center;justify-content:center;flex-direction:column;padding:30px 24px;text-align:center}
+.tela.ativa{display:flex}
+.logo{font-size:clamp(70px,18vw,105px);font-weight:900;letter-spacing:-7px;color:var(--laranja)}
+.logo span{color:white}
+.slogan{margin-top:10px;letter-spacing:1px}
+.icone-gps{width:90px;height:90px;border:2px solid #ffffff55;border-radius:50%;display:grid;place-items:center;font-size:42px;margin-bottom:28px}
+h1{font-size:clamp(27px,6vw,36px);line-height:1.2;max-width:420px}
+.descricao{font-size:16px;line-height:1.6;opacity:.85;max-width:390px;margin-top:16px}
+.botao{width:100%;max-width:350px;min-height:56px;border:0;border-radius:13px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:18px;background:var(--laranja);color:white}
+.secundario{background:transparent;border:1px solid #ffffff88}
+.branco{background:white;color:var(--roxo)}
+.perfis,.opcoes{width:100%;max-width:350px;display:grid;gap:14px;margin-top:30px}
+.perfil,.opcao{background:white;color:var(--roxo);border:0;border-radius:15px;min-height:76px;font-size:18px;font-weight:bold;cursor:pointer}
+.perfil span{display:block;font-size:13px;color:#777;font-weight:normal;margin-top:5px}
+.campo{width:100%;max-width:350px;padding:17px;border:0;border-radius:12px;font-size:16px;margin-top:25px;outline:none}
+.mensagem{font-size:14px;line-height:1.5;margin-top:18px;max-width:350px;opacity:.9}
+.indicador{width:42px;height:4px;background:#ffffff55;border-radius:10px;margin-top:55px;overflow:hidden}
+.indicador:after{content:"";display:block;height:100%;background:var(--laranja);animation:carregar 1.8s ease forwards}
+@keyframes carregar{from{transform:translateX(-100%)}to{transform:translateX(0)}}
+@keyframes pulsar{50%{transform:scale(1.05)}}
+#splash .logo{animation:pulsar 1.5s infinite}
+.voltar{background:none;border:0;color:white;font-size:15px;margin-top:25px;cursor:pointer}
+@media(max-width:500px){.tela{padding:25px 20px}}
 </style>
 </head>
 
 <body>
-
-<!-- TELA DE ABERTURA -->
 
 <section id="splash" class="tela ativa">
   <div class="logo">VUPA<span>.</span></div>
@@ -201,125 +45,157 @@ h1 {
   <div class="indicador"></div>
 </section>
 
-<!-- LOCALIZAÇÃO -->
-
 <section id="gps" class="tela">
   <div class="icone-gps">⌖</div>
-
   <h1>Vamos encontrar você?</h1>
-
-  <p class="descricao">
-    Permita o acesso à localização do seu aparelho
-    para encontrar motoristas próximos e facilitar
-    suas viagens com a VUPA.
-  </p>
-
-  <button class="botao" id="permitirGps" onclick="solicitarGPS()">
-    Permitir localização
-  </button>
-
-  <button class="botao secundario" onclick="continuarSemGPS()">
-    Continuar sem GPS
-  </button>
-
+  <p class="descricao">Permita o acesso à localização para encontrar motoristas próximos e facilitar suas viagens.</p>
+  <button class="botao" id="permitirGps" onclick="solicitarGPS()">Permitir localização</button>
+  <button class="botao secundario" onclick="continuarSemGPS()">Continuar sem GPS</button>
   <p class="mensagem" id="mensagemGps"></p>
 </section>
 
-<!-- ESCOLHA DO PERFIL -->
-
 <section id="perfis" class="tela">
   <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
-
   <h1>Como você quer usar a VUPA?</h1>
-
-  <p class="descricao">
-    Escolha seu perfil para continuar.
-  </p>
-
+  <p class="descricao">Escolha seu perfil para continuar.</p>
   <div class="perfis">
-    <button class="perfil" onclick="selecionarPerfil('passageiro')">
-      Sou passageiro
-      <span>Quero solicitar uma corrida</span>
-    </button>
+    <button class="perfil" onclick="escolherPerfil('passageiro')">Sou passageiro<span>Quero solicitar uma corrida</span></button>
+    <button class="perfil" onclick="escolherPerfil('motorista')">Sou motorista<span>Quero dirigir com a VUPA</span></button>
+  </div>
+</section>
 
-    <button class="perfil" onclick="selecionarPerfil('motorista')">
-      Sou motorista
-      <span>Quero dirigir com a VUPA</span>
-    </button>
+<section id="passageiro" class="tela">
+  <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
+  <h1>Bem-vindo à VUPA!</h1>
+  <p class="descricao">Como deseja continuar?</p>
+  <div class="opcoes">
+    <button class="botao" onclick="abrirAcesso('entrar')">Entrar na minha conta</button>
+    <button class="botao branco" onclick="abrirAcesso('cadastro')">Criar minha conta</button>
+  </div>
+  <button class="voltar" onclick="mostrarTela('perfis')">← Voltar</button>
+</section>
+
+<section id="acesso" class="tela">
+  <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
+  <h1 id="tituloAcesso">Entrar na VUPA</h1>
+  <p class="descricao" id="descricaoAcesso">Escolha uma forma de acesso.</p>
+
+  <div class="opcoes">
+    <button class="opcao" onclick="acessoTelefone()">Continuar com telefone</button>
+    <button class="opcao" onclick="integracaoPendente('Google')">G Continuar com Google</button>
+    <button class="opcao" onclick="integracaoPendente('Apple')">Continuar com Apple</button>
+    <button class="opcao" onclick="integracaoPendente('Facebook')">f Continuar com Facebook</button>
   </div>
 
-  <p class="mensagem" id="mensagemPerfil"></p>
+  <p class="mensagem" id="mensagemAcesso"></p>
+  <button class="voltar" onclick="mostrarTela('passageiro')">← Voltar</button>
+</section>
+
+<section id="telefone" class="tela">
+  <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
+  <h1>Seu número de telefone</h1>
+  <p class="descricao">Informe seu número para continuar com segurança.</p>
+
+  <input class="campo" id="telefoneInput" type="tel" inputmode="tel" placeholder="(00) 00000-0000" maxlength="15">
+
+  <button class="botao" onclick="validarTelefone()">Continuar</button>
+  <p class="mensagem" id="mensagemTelefone"></p>
+  <button class="voltar" onclick="mostrarTela('acesso')">← Voltar</button>
+</section>
+
+<section id="motorista" class="tela">
+  <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
+  <h1>Área do motorista</h1>
+  <p class="descricao">A próxima etapa será o acesso e cadastro dos motoristas parceiros.</p>
+  <button class="botao secundario" onclick="mostrarTela('perfis')">Voltar</button>
 </section>
 
 <script>
-const telas = ["splash", "gps", "perfis"];
+const telas=["splash","gps","perfis","passageiro","acesso","telefone","motorista"];
+let tipoAcesso="entrar";
 
-function mostrarTela(id) {
-  telas.forEach(tela => {
-    document.getElementById(tela).classList.remove("ativa");
+function mostrarTela(id){
+  telas.forEach(t=>{
+    document.getElementById(t).classList.remove("ativa");
   });
-
   document.getElementById(id).classList.add("ativa");
 }
 
-setTimeout(() => {
-  mostrarTela("gps");
-}, 2200);
+setTimeout(()=>mostrarTela("gps"),2200);
 
-function solicitarGPS() {
-  const botao = document.getElementById("permitirGps");
-  const mensagem = document.getElementById("mensagemGps");
+function solicitarGPS(){
+  const botao=document.getElementById("permitirGps");
+  const mensagem=document.getElementById("mensagemGps");
 
-  if (!navigator.geolocation) {
-    mensagem.textContent =
-      "Seu aparelho não disponibiliza localização neste navegador.";
+  if(!navigator.geolocation){
+    mensagem.textContent="Localização não disponível neste navegador.";
     return;
   }
 
-  botao.disabled = true;
-  botao.textContent = "Localizando...";
-  mensagem.textContent = "Aguardando autorização do aparelho...";
+  botao.disabled=true;
+  botao.textContent="Localizando...";
+  mensagem.textContent="Aguardando autorização do aparelho...";
 
   navigator.geolocation.getCurrentPosition(
-    (posicao) => {
-      const latitude = posicao.coords.latitude;
-      const longitude = posicao.coords.longitude;
-
-      sessionStorage.setItem("vupa_latitude", latitude);
-      sessionStorage.setItem("vupa_longitude", longitude);
-
-      mensagem.textContent = "Localização autorizada!";
+    pos=>{
+      sessionStorage.setItem("vupa_latitude",pos.coords.latitude);
+      sessionStorage.setItem("vupa_longitude",pos.coords.longitude);
       mostrarTela("perfis");
     },
-    (erro) => {
-      botao.disabled = false;
-      botao.textContent = "Tentar novamente";
-
-      if (erro.code === 1) {
-        mensagem.textContent =
-          "A localização foi bloqueada. Você pode continuar sem GPS.";
-      } else {
-        mensagem.textContent =
-          "Não foi possível obter sua localização. Tente novamente ou continue sem GPS.";
-      }
+    erro=>{
+      botao.disabled=false;
+      botao.textContent="Tentar novamente";
+      mensagem.textContent=erro.code===1
+        ?"Localização bloqueada. Você pode continuar sem GPS."
+        :"Não foi possível obter sua localização. Tente novamente.";
     },
-    {
-      enableHighAccuracy: true,
-      timeout: 15000,
-      maximumAge: 0
-    }
+    {enableHighAccuracy:true,timeout:15000,maximumAge:0}
   );
 }
 
-function continuarSemGPS() {
+function continuarSemGPS(){
   mostrarTela("perfis");
 }
 
-function selecionarPerfil(perfil) {
-  document.getElementById("mensagemPerfil").textContent =
-    perfil === "passageiro"
-    ? "A próxima etapa será o acesso do passageiro."
-    : "A próxima etapa será o cadastro do motorista.";
+function escolherPerfil(perfil){
+  if(perfil==="passageiro"){
+    mostrarTela("passageiro");
+  }else{
+    mostrarTela("motorista");
+  }
+}
+
+function abrirAcesso(tipo){
+  tipoAcesso=tipo;
+  document.getElementById("tituloAcesso").textContent=
+    tipo==="entrar"?"Entrar na VUPA":"Criar conta na VUPA";
+  document.getElementById("descricaoAcesso").textContent=
+    tipo==="entrar"?"Escolha uma forma de acesso à sua conta.":"Escolha como deseja iniciar seu cadastro.";
+  document.getElementById("mensagemAcesso").textContent="";
+  mostrarTela("acesso");
+}
+
+function acessoTelefone(){
+  document.getElementById("mensagemTelefone").textContent="";
+  mostrarTela("telefone");
+}
+
+function validarTelefone(){
+  const telefone=document.getElementById("telefoneInput").value.replace(/\D/g,"");
+  const mensagem=document.getElementById("mensagemTelefone");
+
+  if(telefone.length<10 || telefone.length>11){
+    mensagem.textContent="Informe um número de telefone válido com DDD.";
+    return;
+  }
+
+  mensagem.textContent=
+    "Número informado. O envio do código SMS será ativado após a integração do serviço de autenticação.";
+}
+
+function integracaoPendente(provedor){
+  document.getElementById("mensagemAcesso").textContent=
+    "O acesso por "+provedor+" será ativado após configurarmos a integração oficial.";
 }
 </script>
 
