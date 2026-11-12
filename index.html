@@ -35,16 +35,12 @@ h1{font-size:clamp(27px,6vw,36px);line-height:1.2;max-width:420px}
 #splash .logo{animation:pulsar 1.5s infinite}
 @keyframes carregar{from{transform:translateX(-100%)}to{transform:translateX(0)}}
 @keyframes pulsar{50%{transform:scale(1.05)}}
-
 .formulario{width:100%;max-width:390px;display:grid;gap:13px;margin-top:25px;text-align:left}
 .formulario label{font-size:13px;font-weight:bold;margin-bottom:-7px}
 .formulario input:not([type="checkbox"]){width:100%;min-height:51px;border:1px solid #ffffff55;border-radius:11px;padding:13px 15px;font-size:16px;outline:none;background:white;color:#222}
-.formulario input:focus,.campo:focus{border:2px solid var(--laranja)}
+.formulario input:focus{border:2px solid var(--laranja)}
 .termos{display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.5;margin-top:5px}
 .termos input{width:18px;height:18px;flex-shrink:0;margin-top:1px;accent-color:var(--laranja)}
-.campo{width:100%;max-width:350px;min-height:55px;padding:15px;border:1px solid #ffffff55;border-radius:12px;font-size:22px;letter-spacing:9px;text-align:center;margin-top:25px;outline:none}
-.codigo-demo{background:#ffffff18;border:1px dashed #ffffff88;border-radius:12px;padding:14px;width:100%;max-width:350px;margin-top:20px;font-size:14px;line-height:1.6}
-.codigo-demo strong{display:block;font-size:25px;letter-spacing:6px;color:#fff;margin-top:5px}
 @media(max-width:500px){.tela{padding:25px 20px}}
 </style>
 </head>
@@ -88,47 +84,22 @@ h1{font-size:clamp(27px,6vw,36px);line-height:1.2;max-width:420px}
 
 <section id="acesso" class="tela">
   <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
-  <h1 id="tituloAcesso">Entrar na VUPA</h1>
-  <p class="descricao" id="descricaoAcesso">Escolha uma forma de acesso.</p>
+  <h1>Entrar na VUPA</h1>
+  <p class="descricao">Acesse sua conta usando seu e-mail e senha.</p>
 
-  <div class="opcoes">
-    <button class="opcao" onclick="acessoTelefone()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#5126D8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M5 3h4l2 5-3 2a15 15 0 0 0 6 6l2-3 5 2v4c0 1-1 2-2 2A17 17 0 0 1 3 5c0-1 1-2 2-2z"/>
-      </svg>
-      Continuar com telefone
-    </button>
+  <form class="formulario" id="formLogin" onsubmit="entrarConta(event)">
+    <label for="loginEmail">E-mail</label>
+    <input id="loginEmail" type="email" placeholder="seuemail@exemplo.com" autocomplete="email" required>
 
-    <button class="opcao" onclick="integracaoPendente('Google')">
-      <svg viewBox="0 0 48 48">
-        <path fill="#4285F4" d="M43.6 24.5c0-1.4-.1-2.8-.4-4.1H24v7.8h11a9.4 9.4 0 0 1-4.1 6.2v5h6.7c3.9-3.6 6-8.8 6-14.9z"/>
-        <path fill="#34A853" d="M24 44c5.5 0 10.1-1.8 13.5-4.8l-6.7-5c-1.8 1.2-4.1 2-6.8 2-5.2 0-9.6-3.5-11.2-8.2H5.9v5.1A20 20 0 0 0 24 44z"/>
-        <path fill="#FBBC05" d="M12.8 28a12 12 0 0 1 0-8v-5.1H5.9a20 20 0 0 0 0 18.2z"/>
-        <path fill="#EA4335" d="M24 11.8c3 0 5.6 1 7.7 3.1l5.8-5.8C34 5.8 29.5 4 24 4A20 20 0 0 0 5.9 14.9l6.9 5.1c1.6-4.7 6-8.2 11.2-8.2z"/>
-      </svg>
-      Continuar com Google
-    </button>
+    <label for="loginSenha">Senha</label>
+    <input id="loginSenha" type="password" placeholder="Sua senha" autocomplete="current-password" required>
 
-    <button class="opcao" onclick="integracaoPendente('Apple')">
-      <svg viewBox="0 0 24 24" fill="#000">
-        <path d="M16.4 12.8c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.5-.2-2.9.9-3.7.9-.8 0-2-.9-3.3-.9-1.7 0-3.2 1-4.1 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.5 3.2 2.4 1.3-.1 1.8-.8 3.4-.8s2 .8 3.4.8c1.4 0 2.3-1.2 3.2-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-3.4-1.3-3.4-4.4zM14 5.8c.7-.9 1.2-2.1 1.1-3.3-1.1.1-2.4.7-3.2 1.6-.7.8-1.3 2-1.1 3.2 1.2.1 2.4-.6 3.2-1.5z"/>
-      </svg>
-      Continuar com Apple
-    </button>
-
-    <button class="opcao" onclick="integracaoPendente('Facebook')">
-      <svg viewBox="0 0 24 24" fill="#1877F2">
-        <path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.3c0-3 1.8-4.7 4.5-4.7 1.3 0 2.6.2 2.6.2v2.9h-1.5c-1.5 0-2 .9-2 1.9V12h3.4l-.5 3.5h-2.9v8.4A12 12 0 0 0 24 12z"/>
-      </svg>
-      Continuar com Facebook
-    </button>
-  </div>
+    <button class="botao" id="botaoLogin" type="submit">Entrar</button>
+  </form>
 
   <p class="mensagem" id="mensagemAcesso"></p>
   <button class="voltar" onclick="mostrarTela('passageiro')">← Voltar</button>
 </section>
-
-<!-- CADASTRO -->
 
 <section id="cadastro" class="tela">
   <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
@@ -151,74 +122,39 @@ h1{font-size:clamp(27px,6vw,36px);line-height:1.2;max-width:420px}
     <label for="email">E-mail</label>
     <input id="email" type="email" placeholder="seuemail@exemplo.com" autocomplete="email" required>
 
+    <label for="senha">Crie uma senha</label>
+    <input id="senha" type="password" placeholder="Mínimo de 8 caracteres" autocomplete="new-password" minlength="8" required>
+
+    <label for="confirmarSenha">Confirme sua senha</label>
+    <input id="confirmarSenha" type="password" placeholder="Digite a senha novamente" autocomplete="new-password" minlength="8" required>
+
     <label class="termos">
       <input id="aceiteTermos" type="checkbox" required>
       <span>Li e aceito os termos de uso e a política de privacidade da VUPA.</span>
     </label>
 
-    <button class="botao" type="submit">Continuar cadastro</button>
+    <button class="botao" id="botaoCadastro" type="submit">Criar conta</button>
   </form>
 
   <p class="mensagem" id="mensagemCadastro"></p>
   <button class="voltar" onclick="mostrarTela('passageiro')">← Voltar</button>
 </section>
 
-<!-- CONFIRMAÇÃO DO TELEFONE -->
-
 <section id="verificacao" class="tela">
   <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
-  <h1>Confirme seu telefone</h1>
-  <p class="descricao" id="textoVerificacao">
-    Digite o código de 6 dígitos para confirmar seu número.
-  </p>
-
-  <div class="codigo-demo">
-    Modo de demonstração — nenhum SMS foi enviado.
-    <strong id="codigoDemonstracao">------</strong>
-  </div>
-
-  <input
-    class="campo"
-    id="codigoInput"
-    type="text"
-    inputmode="numeric"
-    autocomplete="one-time-code"
-    maxlength="6"
-    placeholder="000000"
-    aria-label="Código de seis dígitos"
-  >
-
-  <button class="botao" onclick="confirmarCodigo()">Confirmar código</button>
-  <button class="botao secundario" onclick="reenviarCodigo()">Gerar outro código</button>
-
-  <p class="mensagem" id="mensagemCodigo"></p>
-  <button class="voltar" onclick="mostrarTela('cadastro')">← Voltar ao cadastro</button>
+  <h1>Confirme seu e-mail</h1>
+  <p class="descricao" id="textoVerificacao">Enviamos um link de confirmação para seu endereço de e-mail.</p>
+  <p class="mensagem">Abra o e-mail recebido e clique no link para ativar sua conta. Se não encontrar, confira também a pasta de spam.</p>
+  <button class="botao" onclick="mostrarTela('acesso')">Já confirmei meu e-mail</button>
+  <button class="voltar" onclick="mostrarTela('passageiro')">Voltar ao início</button>
 </section>
-
-<!-- CONCLUSÃO DEMONSTRATIVA -->
 
 <section id="cadastroConcluido" class="tela">
   <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
-  <h1>Telefone confirmado!</h1>
-  <p class="descricao">
-    A etapa de demonstração foi concluída. O cadastro ainda precisará ser enviado e salvo no servidor para criar sua conta de verdade.
-  </p>
-  <button class="botao" onclick="mostrarTela('passageiro')">Voltar ao início</button>
+  <h1>Conta criada!</h1>
+  <p class="descricao">Seu e-mail foi confirmado e seus dados foram registrados na VUPA.</p>
+  <button class="botao" onclick="mostrarTela('acesso')">Entrar na minha conta</button>
 </section>
-
-<!-- LOGIN POR TELEFONE -->
-
-<section id="telefone" class="tela">
-  <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
-  <h1>Seu número de telefone</h1>
-  <p class="descricao">Informe seu número para continuar com segurança.</p>
-  <input class="campo" id="telefoneInput" type="tel" inputmode="tel" placeholder="(00) 00000-0000" maxlength="15">
-  <button class="botao" onclick="validarTelefone()">Continuar</button>
-  <p class="mensagem" id="mensagemTelefone"></p>
-  <button class="voltar" onclick="mostrarTela('acesso')">← Voltar</button>
-</section>
-
-<!-- MOTORISTA -->
 
 <section id="motorista" class="tela">
   <div class="logo" style="font-size:65px">VUPA<span>.</span></div>
@@ -227,14 +163,23 @@ h1{font-size:clamp(27px,6vw,36px);line-height:1.2;max-width:420px}
   <button class="botao secundario" onclick="mostrarTela('perfis')">Voltar</button>
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+const SUPABASE_URL = "https://bexzaptebxxwzhrshtur.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_XTAdYmFMQvusqmm7aYj8tg_apQMLbjr";
+
+const db = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
 const telas = [
   "splash","gps","perfis","passageiro","acesso",
-  "cadastro","verificacao","cadastroConcluido","telefone","motorista"
+  "cadastro","verificacao","cadastroConcluido","motorista"
 ];
 
-let codigoAtual = "";
-let telefonePendente = "";
+let finalizandoCadastro = false;
 
 function mostrarTela(id) {
   telas.forEach(tela => {
@@ -243,9 +188,12 @@ function mostrarTela(id) {
   document.getElementById(id).classList.add("ativa");
 }
 
-setTimeout(() => mostrarTela("gps"), 2200);
+setTimeout(() => {
+  if (!document.querySelector("#splash").classList.contains("ativa")) return;
+  mostrarTela("gps");
+}, 2200);
 
-// GPS OBRIGATÓRIO
+// GPS
 
 function solicitarGPS() {
   const botao = document.getElementById("permitirGps");
@@ -271,9 +219,9 @@ function solicitarGPS() {
       botao.textContent = "Tentar novamente";
 
       if (erro.code === 1) {
-        mensagem.textContent = "A localização é obrigatória. Habilite a permissão nas configurações do navegador ou aparelho e tente novamente.";
+        mensagem.textContent = "A localização é obrigatória. Habilite a permissão nas configurações do navegador e tente novamente.";
       } else if (erro.code === 2) {
-        mensagem.textContent = "Não conseguimos identificar sua localização. Verifique se o GPS está ativado e tente novamente.";
+        mensagem.textContent = "Não conseguimos identificar sua localização. Verifique se o GPS está ativado.";
       } else {
         mensagem.textContent = "A localização demorou para responder. Tente novamente.";
       }
@@ -288,20 +236,16 @@ function escolherPerfil(perfil) {
   mostrarTela(perfil === "passageiro" ? "passageiro" : "motorista");
 }
 
-// ENTRAR OU CADASTRAR
-
 function abrirAcesso(tipo) {
   if (tipo === "cadastro") {
     document.getElementById("formCadastro").reset();
     document.getElementById("mensagemCadastro").textContent = "";
     mostrarTela("cadastro");
-    return;
+  } else {
+    document.getElementById("formLogin").reset();
+    document.getElementById("mensagemAcesso").textContent = "";
+    mostrarTela("acesso");
   }
-
-  document.getElementById("tituloAcesso").textContent = "Entrar na VUPA";
-  document.getElementById("descricaoAcesso").textContent = "Escolha uma forma de acesso à sua conta.";
-  document.getElementById("mensagemAcesso").textContent = "";
-  mostrarTela("acesso");
 }
 
 // MÁSCARAS
@@ -314,24 +258,19 @@ document.getElementById("cpf").addEventListener("input", function() {
   this.value = valor;
 });
 
-function aplicarMascaraTelefone(campo) {
-  campo.addEventListener("input", function() {
-    let valor = this.value.replace(/\D/g, "").slice(0, 11);
+document.getElementById("celular").addEventListener("input", function() {
+  let valor = this.value.replace(/\D/g, "").slice(0, 11);
 
-    if (valor.length > 10) {
-      valor = valor.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, "($1) $2-$3");
-    } else if (valor.length > 6) {
-      valor = valor.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, "($1) $2-$3");
-    } else if (valor.length > 2) {
-      valor = valor.replace(/^(\d{2})(\d+)/, "($1) $2");
-    }
+  if (valor.length > 10) {
+    valor = valor.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, "($1) $2-$3");
+  } else if (valor.length > 6) {
+    valor = valor.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+  } else if (valor.length > 2) {
+    valor = valor.replace(/^(\d{2})(\d+)/, "($1) $2");
+  }
 
-    this.value = valor;
-  });
-}
-
-aplicarMascaraTelefone(document.getElementById("celular"));
-aplicarMascaraTelefone(document.getElementById("telefoneInput"));
+  this.value = valor;
+});
 
 // VALIDAÇÃO CPF
 
@@ -376,17 +315,21 @@ function maiorDeIdade(data) {
   return idade >= 18;
 }
 
-// CADASTRO E GERAÇÃO DO CÓDIGO DEMONSTRATIVO
+// CADASTRO REAL
 
-function validarCadastro(evento) {
+async function validarCadastro(evento) {
   evento.preventDefault();
 
-  const nome = document.getElementById("nome").value.trim();
-  const cpf = document.getElementById("cpf").value;
-  const nascimento = document.getElementById("nascimento").value;
-  const celular = document.getElementById("celular").value.replace(/\D/g, "");
-  const email = document.getElementById("email").value.trim();
+  const botao = document.getElementById("botaoCadastro");
   const mensagem = document.getElementById("mensagemCadastro");
+
+  const nome = document.getElementById("nome").value.trim();
+  const cpf = document.getElementById("cpf").value.replace(/\D/g, "");
+  const nascimento = document.getElementById("nascimento").value;
+  const telefone = document.getElementById("celular").value.replace(/\D/g, "");
+  const email = document.getElementById("email").value.trim().toLowerCase();
+  const senha = document.getElementById("senha").value;
+  const confirmarSenha = document.getElementById("confirmarSenha").value;
 
   mensagem.textContent = "";
 
@@ -396,22 +339,27 @@ function validarCadastro(evento) {
   }
 
   if (!cpfValido(cpf)) {
-    mensagem.textContent = "O CPF informado não é válido. Confira os números.";
+    mensagem.textContent = "O CPF informado não é válido.";
     return;
   }
 
   if (!maiorDeIdade(nascimento)) {
-    mensagem.textContent = "É necessário ter pelo menos 18 anos para criar uma conta.";
+    mensagem.textContent = "É necessário ter pelo menos 18 anos.";
     return;
   }
 
-  if (celular.length !== 10 && celular.length !== 11) {
+  if (telefone.length !== 10 && telefone.length !== 11) {
     mensagem.textContent = "Informe um telefone válido com DDD.";
     return;
   }
 
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    mensagem.textContent = "Informe um endereço de e-mail válido.";
+  if (senha.length < 8) {
+    mensagem.textContent = "Sua senha precisa ter pelo menos 8 caracteres.";
+    return;
+  }
+
+  if (senha !== confirmarSenha) {
+    mensagem.textContent = "As senhas não são iguais.";
     return;
   }
 
@@ -420,81 +368,224 @@ function validarCadastro(evento) {
     return;
   }
 
-  telefonePendente = celular;
-  gerarCodigoDemonstracao();
-  mostrarTela("verificacao");
+  botao.disabled = true;
+  botao.textContent = "Criando sua conta...";
+
+  try {
+    // Dados temporários ficam apenas nesta sessão do navegador.
+    sessionStorage.setItem("vupa_cadastro_pendente", JSON.stringify({
+      nome,
+      cpf,
+      nascimento,
+      telefone,
+      email
+    }));
+
+    const { data, error } = await db.auth.signUp({
+      email,
+      password: senha,
+      options: {
+        emailRedirectTo: "https://vupa-app.vercel.app/"
+      }
+    });
+
+    if (error) throw error;
+
+    if (data.session) {
+      await salvarPerfilPassageiro(data.user.id);
+      return;
+    }
+
+    document.getElementById("textoVerificacao").textContent =
+      "Enviamos um link de confirmação para " + email +
+      ". Abra o e-mail e clique no link para ativar sua conta.";
+
+    mostrarTela("verificacao");
+
+  } catch (erro) {
+    sessionStorage.removeItem("vupa_cadastro_pendente");
+    mensagem.textContent = traduzirErro(erro.message);
+  } finally {
+    botao.disabled = false;
+    botao.textContent = "Criar conta";
+  }
 }
 
-// CÓDIGO DE SEIS DÍGITOS — APENAS DEMONSTRAÇÃO
+// SALVAR PERFIL DEPOIS DA CONFIRMAÇÃO
 
-function gerarCodigoDemonstracao() {
-  codigoAtual = String(Math.floor(100000 + Math.random() * 900000));
+async function salvarPerfilPassageiro(usuarioId) {
+  if (finalizandoCadastro) return;
+  finalizandoCadastro = true;
 
-  document.getElementById("codigoDemonstracao").textContent = codigoAtual;
-  document.getElementById("codigoInput").value = "";
-  document.getElementById("mensagemCodigo").textContent = "";
+  const pendente = sessionStorage.getItem("vupa_cadastro_pendente");
 
-  document.getElementById("textoVerificacao").textContent =
-    "Confirme o telefone terminado em " +
-    telefonePendente.slice(-4) +
-    " digitando o código de 6 dígitos.";
+  if (!pendente) {
+    finalizandoCadastro = false;
+    document.getElementById("mensagemAcesso").textContent =
+      "Seu e-mail foi confirmado. Para concluir o perfil, entre em contato com o suporte ou reinicie o cadastro neste mesmo navegador.";
+    mostrarTela("acesso");
+    return;
+  }
+
+  const dados = JSON.parse(pendente);
+
+  try {
+    const { data: perfilExistente, error: erroConsultaPerfil } = await db
+      .from("perfis")
+      .select("id")
+      .eq("id", usuarioId)
+      .maybeSingle();
+
+    if (erroConsultaPerfil) throw erroConsultaPerfil;
+
+    if (!perfilExistente) {
+      const { error } = await db.from("perfis").insert({
+        id: usuarioId,
+        nome_completo: dados.nome,
+        telefone: dados.telefone,
+        email: dados.email,
+        tipo_conta: "passageiro"
+      });
+
+      if (error) throw error;
+    }
+
+    const { data: passageiroExistente, error: erroConsultaPassageiro } = await db
+      .from("dados_passageiros")
+      .select("id")
+      .eq("id", usuarioId)
+      .maybeSingle();
+
+    if (erroConsultaPassageiro) throw erroConsultaPassageiro;
+
+    if (!passageiroExistente) {
+      const { error } = await db.from("dados_passageiros").insert({
+        id: usuarioId,
+        cpf: dados.cpf,
+        data_nascimento: dados.nascimento
+      });
+
+      if (error) throw error;
+    }
+
+    sessionStorage.removeItem("vupa_cadastro_pendente");
+    document.getElementById("formCadastro").reset();
+    mostrarTela("cadastroConcluido");
+
+  } catch (erro) {
+    finalizandoCadastro = false;
+    document.getElementById("mensagemAcesso").textContent =
+      "Seu e-mail foi confirmado, mas houve um problema ao salvar seu perfil: " +
+      traduzirErro(erro.message) +
+      " Entre novamente para tentar concluir.";
+    mostrarTela("acesso");
+  }
 }
 
-function reenviarCodigo() {
-  gerarCodigoDemonstracao();
-  document.getElementById("mensagemCodigo").textContent =
-    "Um novo código demonstrativo foi gerado. Nenhum SMS foi enviado.";
+// LOGIN REAL
+
+async function entrarConta(evento) {
+  evento.preventDefault();
+
+  const botao = document.getElementById("botaoLogin");
+  const mensagem = document.getElementById("mensagemAcesso");
+  const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+  const senha = document.getElementById("loginSenha").value;
+
+  botao.disabled = true;
+  botao.textContent = "Entrando...";
+  mensagem.textContent = "";
+
+  try {
+    const { data, error } = await db.auth.signInWithPassword({
+      email,
+      password: senha
+    });
+
+    if (error) throw error;
+
+    const { data: perfil, error: erroPerfil } = await db
+      .from("perfis")
+      .select("id,nome_completo,tipo_conta")
+      .eq("id", data.user.id)
+      .maybeSingle();
+
+    if (erroPerfil) throw erroPerfil;
+
+    if (!perfil) {
+      mensagem.textContent = "Sua conta foi autenticada, mas o perfil ainda não foi concluído.";
+      return;
+    }
+
+    if (perfil.tipo_conta !== "passageiro") {
+      mensagem.textContent = "Este acesso não está configurado como passageiro.";
+      return;
+    }
+
+    mensagem.textContent = "Login realizado. Olá, " + perfil.nome_completo + "! A próxima etapa será a tela inicial do passageiro.";
+
+  } catch (erro) {
+    mensagem.textContent = traduzirErro(erro.message);
+  } finally {
+    botao.disabled = false;
+    botao.textContent = "Entrar";
+  }
 }
 
-document.getElementById("codigoInput").addEventListener("input", function() {
-  this.value = this.value.replace(/\D/g, "").slice(0, 6);
+// RECONHECER CONFIRMAÇÃO DO E-MAIL
+
+async function verificarSessao() {
+  const { data, error } = await db.auth.getSession();
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  if (data.session && sessionStorage.getItem("vupa_cadastro_pendente")) {
+    await salvarPerfilPassageiro(data.session.user.id);
+  }
+}
+
+db.auth.onAuthStateChange((evento, sessao) => {
+  if (
+    sessao &&
+    (evento === "SIGNED_IN" || evento === "INITIAL_SESSION" || evento === "USER_UPDATED")
+  ) {
+    setTimeout(() => salvarPerfilPassageiro(sessao.user.id), 0);
+  }
 });
 
-function confirmarCodigo() {
-  const informado = document.getElementById("codigoInput").value;
-  const mensagem = document.getElementById("mensagemCodigo");
+// TRATAR RETORNO DO LINK DE CONFIRMAÇÃO
 
-  if (informado.length !== 6) {
-    mensagem.textContent = "Digite os seis números do código.";
-    return;
+verificarSessao();
+
+// LOGIN SOCIAL AINDA NÃO CONFIGURADO
+
+function traduzirErro(mensagem) {
+  const texto = (mensagem || "").toLowerCase();
+
+  if (texto.includes("already registered") || texto.includes("already been registered")) {
+    return "Este e-mail já possui cadastro. Tente entrar na sua conta.";
   }
 
-  if (informado !== codigoAtual) {
-    mensagem.textContent = "Código incorreto. Confira e tente novamente.";
-    return;
+  if (texto.includes("invalid login credentials")) {
+    return "E-mail ou senha incorretos.";
   }
 
-  codigoAtual = "";
-  document.getElementById("codigoDemonstracao").textContent = "------";
-  mostrarTela("cadastroConcluido");
-}
-
-// LOGIN POR TELEFONE
-
-function acessoTelefone() {
-  document.getElementById("mensagemTelefone").textContent = "";
-  mostrarTela("telefone");
-}
-
-function validarTelefone() {
-  const telefone = document.getElementById("telefoneInput").value.replace(/\D/g, "");
-  const mensagem = document.getElementById("mensagemTelefone");
-
-  if (telefone.length !== 10 && telefone.length !== 11) {
-    mensagem.textContent = "Informe um número de telefone válido com DDD.";
-    return;
+  if (texto.includes("email not confirmed")) {
+    return "Confirme seu e-mail antes de entrar.";
   }
 
-  mensagem.textContent =
-    "O acesso por SMS será ativado após a integração do serviço de autenticação.";
-}
+  if (texto.includes("password")) {
+    return "Verifique a senha informada. Ela deve ter pelo menos 8 caracteres.";
+  }
 
-// LOGIN SOCIAL
+  if (texto.includes("duplicate key")) {
+    return "Já existe um cadastro com esses dados.";
+  }
 
-function integracaoPendente(provedor) {
-  document.getElementById("mensagemAcesso").textContent =
-    "O acesso por " + provedor +
-    " será ativado após configurarmos a integração oficial.";
+  return mensagem || "Não foi possível concluir a operação. Tente novamente.";
 }
 </script>
 
